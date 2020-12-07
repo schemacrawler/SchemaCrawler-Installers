@@ -30,16 +30,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 15
-    - id: install-packages
-      name: Install packages
-      run: |
-        # Install Graphviz
-        sudo apt-get -qq update
-        sudo apt-get -q install graphviz
 
 # BUILD FOR DISTRIBUTION
     - id: build
       name: Build distribution
+      shell: bash
       run: |
         # Build distribution
         cd SchemaCrawler
@@ -50,16 +45,17 @@ jobs:
           -DskipTests=true \
           clean install
         cp \
-          ./schemacrawler-distrib/target/_expanded-distribution/lib \
-          ../schemacrawler-lib
+          ./schemacrawler-distrib/target/_expanded-distribution/lib/* \
+          ../schemacrawler-lib/
         cp \
-          ./schemacrawler-website/target/_website/images \
-          ../schemacrawler-icons
+          ./schemacrawler-website/target/_website/images/* \
+          ../schemacrawler-icons/
         cd ..
         mkdir ./schemacrawler-installers
         ls -lR
     - id: build-installers
       name: Build installers
+      shell: bash
       run: |
         # Build installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
@@ -94,16 +90,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 15
-    - id: install-packages
-      name: Install packages
-      run: |
-        # Install Graphviz
-        sudo apt-get -qq update
-        sudo apt-get -q install graphviz
 
 # BUILD FOR DISTRIBUTION
     - id: build
       name: Build distribution
+      shell: bash
       run: |
         # Build distribution
         cd SchemaCrawler
@@ -114,16 +105,17 @@ jobs:
           -DskipTests=true \
           clean install
         cp \
-          ./schemacrawler-distrib/target/_expanded-distribution/lib \
-          ../schemacrawler-lib
+          ./schemacrawler-distrib/target/_expanded-distribution/lib/* \
+          ../schemacrawler-lib/
         cp \
-          ./schemacrawler-website/target/_website/images \
-          ../schemacrawler-icons
+          ./schemacrawler-website/target/_website/images/* \
+          ../schemacrawler-icons/*
         cd ..
         mkdir ./schemacrawler-installers
         ls -lR
     - id: build-installers
       name: Build installers
+      shell: bash
       run: |
         # Build installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
@@ -159,6 +151,7 @@ jobs:
 
     - id: rename-downloaded-files
       name: Rename downloaded files
+      shell: bash
       run: |
         ls -alR
         mv schemacrawler_16.11.6-1_amd64.deb schemacrawler-16.11.6.deb
