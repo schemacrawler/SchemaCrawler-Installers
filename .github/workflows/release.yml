@@ -49,13 +49,13 @@ jobs:
           -Ddistrib \
           -DskipTests=true \
           clean install
-        cd ..
         cp \
           ./schemacrawler-distrib/target/_expanded-distribution/lib \
-          ./schemacrawler-lib
+          ../schemacrawler-lib
         cp \
           ./schemacrawler-website/target/_website/images \
-          ./schemacrawler-icons
+          ../schemacrawler-icons
+        cd ..
         mkdir ./schemacrawler-installers
         ls -lR
     - id: build-installers
@@ -113,13 +113,13 @@ jobs:
           -Ddistrib \
           -DskipTests=true \
           clean install
-        cd ..
         cp \
           ./schemacrawler-distrib/target/_expanded-distribution/lib \
-          ./schemacrawler-lib
+          ../schemacrawler-lib
         cp \
           ./schemacrawler-website/target/_website/images \
-          ./schemacrawler-icons
+          ../schemacrawler-icons
+        cd ..
         mkdir ./schemacrawler-installers
         ls -lR
     - id: build-installers
