@@ -47,7 +47,7 @@ jobs:
           --no-transfer-progress \
           --batch-mode \
           -Ddistrib \
-          -DskipTest=true \
+          -DskipTests=true \
           clean install
         cd ..
         cp \
@@ -111,7 +111,7 @@ jobs:
           --no-transfer-progress \
           --batch-mode \
           -Ddistrib \
-          -DskipTest=true \
+          -DskipTests=true \
           clean install
         cd ..
         cp \
