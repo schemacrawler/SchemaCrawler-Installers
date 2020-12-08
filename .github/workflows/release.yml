@@ -37,6 +37,9 @@ jobs:
       shell: bash
       run: |
         # Build distribution
+        mkdir ./schemacrawler-lib
+        mkdir ./schemacrawler-icons
+        mkdir ./schemacrawler-installers
         cd SchemaCrawler
         mvn \
           --no-transfer-progress \
@@ -51,7 +54,6 @@ jobs:
           ./schemacrawler-website/target/_website/images/* \
           ../schemacrawler-icons/
         cd ..
-        mkdir ./schemacrawler-installers
         ls -lR
     - id: build-installers
       name: Build installers
@@ -97,6 +99,9 @@ jobs:
       shell: bash
       run: |
         # Build distribution
+        mkdir ./schemacrawler-lib
+        mkdir ./schemacrawler-icons
+        mkdir ./schemacrawler-installers
         cd SchemaCrawler
         mvn \
           --no-transfer-progress \
@@ -111,7 +116,6 @@ jobs:
           ./schemacrawler-website/target/_website/images/* \
           ../schemacrawler-icons/*
         cd ..
-        mkdir ./schemacrawler-installers
         ls -lR
     - id: build-installers
       name: Build installers
