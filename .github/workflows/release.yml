@@ -61,6 +61,7 @@ jobs:
       run: |
         # Build installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
+        ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
     - id: upload-installer
@@ -123,6 +124,7 @@ jobs:
       run: |
         # Build installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
+        ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
     - id: upload-installer
