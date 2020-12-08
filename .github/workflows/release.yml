@@ -30,6 +30,20 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 15
+    - id: cache-m2
+      name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    - id: cache-ivy2
+      name: Cache Ivy packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.ivy2
+        key: ${{ runner.os }}-ivy2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-ivy2
 
 # BUILD FOR DISTRIBUTION
     - id: build
@@ -46,7 +60,7 @@ jobs:
           --batch-mode \
           -Ddistrib \
           -DskipTests=true \
-          clean install
+          package
         cp \
           ./schemacrawler-distrib/target/_expanded-distribution/lib/* \
           ../schemacrawler-lib/
@@ -93,6 +107,21 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 15
+    - id: cache-m2
+      name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    - id: cache-ivy2
+      name: Cache Ivy packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.ivy2
+        key: ${{ runner.os }}-ivy2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-ivy2
+
 
 # BUILD FOR DISTRIBUTION
     - id: build
@@ -109,13 +138,13 @@ jobs:
           --batch-mode \
           -Ddistrib \
           -DskipTests=true \
-          clean install
+          package
         cp \
           ./schemacrawler-distrib/target/_expanded-distribution/lib/* \
           ../schemacrawler-lib/
         cp \
           ./schemacrawler-website/target/_website/images/* \
-          ../schemacrawler-icons/*
+          ../schemacrawler-icons/
         cd ..
         ls -lR
     - id: build-installers
