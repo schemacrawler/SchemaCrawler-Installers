@@ -75,6 +75,9 @@ jobs:
       run: |
         # Build installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
+        mv \
+          ./schemacrawler-installers/schemacrawler_16.11.6-1_amd64.deb \
+          ./schemacrawler-installers/schemacrawler-16.11.6.deb
         ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
@@ -184,14 +187,6 @@ jobs:
       with:
         name: windows-installer
 
-    - id: rename-downloaded-files
-      name: Rename downloaded files
-      shell: bash
-      run: |
-        ls -alR
-        mv schemacrawler_16.11.6-1_amd64.deb schemacrawler-16.11.6.deb
-        ls -alR
-
 # CREATE GITHUB RELEASE AND ADD ASSETS
     - id: create-release
       name: Create GitHub release
@@ -220,6 +215,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: schemacrawler-16.11.6.msi
-        asset_name: schemacrawler-16.11.6.msi
+        asset_path: SchemaCrawler-16.11.6.msi
+        asset_name: SchemaCrawler-16.11.6.msi
         asset_content_type: application/x-binary
