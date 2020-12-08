@@ -53,7 +53,7 @@ jobs:
         # Build distribution
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        mkdir ./schemacrawler-installer
+        mkdir ./schemacrawler-installers
         cd SchemaCrawler
         mvn \
           --no-transfer-progress \
@@ -76,16 +76,16 @@ jobs:
         # Build installer
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
-          ./schemacrawler-installer/schemacrawler_16.11.6-1_amd64.deb \
-          ./schemacrawler-installer/schemacrawler-16.11.6.deb
-        ls -l ./schemacrawler-installer
+          ./schemacrawler-installers/schemacrawler_16.11.6-1_amd64.deb \
+          ./schemacrawler-installers/schemacrawler-16.11.6.deb
+        ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
       uses: actions/upload-artifact@v2
       with:
-        path: ./schemacrawler-installer/*.deb
+        path: ./schemacrawler-installers/*.deb
         name: linux-installer
         retention-days: 1
 
@@ -134,7 +134,7 @@ jobs:
         # Build distribution
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        mkdir ./schemacrawler-installer
+        mkdir ./schemacrawler-installers
         cd SchemaCrawler
         mvn \
           --no-transfer-progress \
@@ -156,14 +156,14 @@ jobs:
       run: |
         # Build installer
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
-        ls -l ./schemacrawler-installer
+        ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
       uses: actions/upload-artifact@v2
       with:
-        path: ./schemacrawler-installer/*.msi
+        path: ./schemacrawler-installers/*.msi
         name: windows-installer
         retention-days: 1
 
