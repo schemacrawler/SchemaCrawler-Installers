@@ -78,6 +78,9 @@ jobs:
         mv \
           ./schemacrawler-installers/schemacrawler_16.11.6-1_amd64.deb \
           ./schemacrawler-installers/schemacrawler-16.11.6.deb
+        sha256sum -b \
+          ./schemacrawler-installers/schemacrawler-16.11.6.deb \
+          > ./schemacrawler-installers/schemacrawler-16.11.6.deb.SHA256
         ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
@@ -85,7 +88,7 @@ jobs:
       name: Upload installer
       uses: actions/upload-artifact@v2
       with:
-        path: ./schemacrawler-installers/*.deb
+        path: ./schemacrawler-installers/*
         name: linux-installer
         retention-days: 1
 
@@ -156,6 +159,9 @@ jobs:
       run: |
         # Build installer
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
+        sha256sum -b \
+          ./schemacrawler-installers/schemacrawler-16.11.6.msi \
+          > ./schemacrawler-installers/schemacrawler-16.11.6.msi.SHA256
         ls -l ./schemacrawler-installers
 
 # SAVE INSTALLER
@@ -163,7 +169,7 @@ jobs:
       name: Upload installer
       uses: actions/upload-artifact@v2
       with:
-        path: ./schemacrawler-installers/*.msi
+        path: ./schemacrawler-installers/*
         name: windows-installer
         retention-days: 1
 
@@ -210,6 +216,16 @@ jobs:
         asset_path: schemacrawler-16.11.6.deb
         asset_name: schemacrawler-16.11.6.deb
         asset_content_type: application/x-binary
+    - id: release-linux-installer-sha256
+      name: Release Linux installer SHA256
+      uses: actions/upload-release-asset@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: schemacrawler-16.11.6.deb.SHA256
+        asset_name: schemacrawler-16.11.6.deb.SHA256
+        asset_content_type: text/plain
     - id: release-windows-installer
       name: Release Windows installer
       uses: actions/upload-release-asset@latest
@@ -220,3 +236,13 @@ jobs:
         asset_path: SchemaCrawler-16.11.6.msi
         asset_name: SchemaCrawler-16.11.6.msi
         asset_content_type: application/x-binary
+    - id: release-windows-installer-sha256
+      name: Release Windows installer SHA256
+      uses: actions/upload-release-asset@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: SchemaCrawler-16.11.6.msi.SHA256
+        asset_name: SchemaCrawler-16.11.6.msi.SHA256
+        asset_content_type: text/plain
