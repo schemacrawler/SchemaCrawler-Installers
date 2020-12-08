@@ -53,7 +53,7 @@ jobs:
         # Build distribution
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        mkdir ./schemacrawler-installers
+        mkdir ./schemacrawler-installer
         cd SchemaCrawler
         mvn \
           --no-transfer-progress \
@@ -69,23 +69,23 @@ jobs:
           ../schemacrawler-icons/
         cd ..
         ls -lR
-    - id: build-installers
-      name: Build installers
+    - id: build-installer
+      name: Build installer
       shell: bash
       run: |
-        # Build installers
+        # Build installer
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
-          ./schemacrawler-installers/schemacrawler_16.11.6-1_amd64.deb \
-          ./schemacrawler-installers/schemacrawler-16.11.6.deb
-        ls -l ./schemacrawler-installers
+          ./schemacrawler-installer/schemacrawler_16.11.6-1_amd64.deb \
+          ./schemacrawler-installer/schemacrawler-16.11.6.deb
+        ls -l ./schemacrawler-installer
 
 # SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
       uses: actions/upload-artifact@v2
       with:
-        path: ./schemacrawler-installers/*.deb
+        path: ./schemacrawler-installer/*.deb
         name: linux-installer
         retention-days: 1
 
@@ -134,7 +134,7 @@ jobs:
         # Build distribution
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        mkdir ./schemacrawler-installers
+        mkdir ./schemacrawler-installer
         cd SchemaCrawler
         mvn \
           --no-transfer-progress \
@@ -150,20 +150,20 @@ jobs:
           ../schemacrawler-icons/
         cd ..
         ls -lR
-    - id: build-installers
-      name: Build installers
+    - id: build-installer
+      name: Build installer
       shell: bash
       run: |
-        # Build installers
+        # Build installer
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
-        ls -l ./schemacrawler-installers
+        ls -l ./schemacrawler-installer
 
 # SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
       uses: actions/upload-artifact@v2
       with:
-        path: ./schemacrawler-installers/*.msi
+        path: ./schemacrawler-installer/*.msi
         name: windows-installer
         retention-days: 1
 
@@ -194,8 +194,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: release-${{ github.sha }}
-        release_name: release-${{ github.sha }}
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        body: |
+          SchemaCrawler Release ${{ github.sha }}
         draft: false
         prerelease: false
     - id: release-linux-installer
