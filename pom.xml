@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>schemacrawler-installers</artifactId>
-  <version>16.14.1</version>
+  <version>16.14.2</version>
   <packaging>pom</packaging>
   <name>SchemaCrawler Multi-platform Installers</name>
 </project>
