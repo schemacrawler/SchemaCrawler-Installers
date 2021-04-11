@@ -4,14 +4,13 @@
   "homepage": "https://www.schemacrawler.com/",
   "license": "EPL-2.0",
   "url": "https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v16.14.4/SchemaCrawler-16.14.4.msi",
-  "hash": "a72a9a5b22170d0c196878716bd125b0249ed7c557731e78147a7ae49f356950",
   "extract_to": "schemacrawler-16.14.4",
   "bin": "schemacrawler-16.14.4\\SchemaCrawler\\SchemaCrawler.exe",
   "checkver": {
     "github": "https://github.com/schemacrawler/SchemaCrawler"
   },
   "autoupdate": {
-    "url": "https://github.com/schemacrawler/SchemaCrawler/releases/download/v$version/schemacrawler-$version-distribution.zip",
+    "url": "https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v$version/SchemaCrawler-$version",
     "extract_to": "schemacrawler-$version"
   },
   "post_install": "schemacrawler -V"
