@@ -162,9 +162,10 @@ jobs:
         sha256sum -b \
           ./schemacrawler-installers/SchemaCrawler-16.14.4.msi \
           | head -n 1 \
-          | cut -d " " -f1 \
+          | sed -e 's/\s.*$//' \
           > ./schemacrawler-installers/SchemaCrawler-16.14.4.msi.SHA256
         ls -l ./schemacrawler-installers
+
 
 # SAVE INSTALLER
     - id: upload-installer
