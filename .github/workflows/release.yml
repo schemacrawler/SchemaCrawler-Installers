@@ -161,13 +161,9 @@ jobs:
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
           ./schemacrawler-installers/SchemaCrawler-16.14.4.msi \
+          | head -n 1
           > ./schemacrawler-installers/SchemaCrawler-16.14.4.msi.SHA256
         ls -l ./schemacrawler-installers
-    - id: additional-sha
-      name: Create a plain SHA256 file
-      shell: pwsh
-      run: |
-        $(CertUtil -hashfile schemacrawler.json SHA256)[1] -replace " ","" > .\schemacrawler-installers\SchemaCrawler-16.14.4.msi.SHA
 
 # SAVE INSTALLER
     - id: upload-installer
