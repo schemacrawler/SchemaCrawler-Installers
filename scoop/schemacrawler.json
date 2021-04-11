@@ -1,27 +1,18 @@
 {
-    "version": "16.14.4",
-    "description": "SchemaCrawler - Free database schema discovery and comprehension tool",
-    "homepage": "https://www.schemacrawler.com/",
-    "license": "EPL-2.0",
-    "suggest": {
-        "JDK": [
-            "java/oraclejdk",
-            "java/openjdk"
-        ]
-    },
-    "url": "https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.14.4/schemacrawler-16.14.4-distribution.zip",
-    "hash": "sha512:56be1048b6a5f53e9e4237a99ee79cda102fc7d16b0e99868ceeeb19b6abed6272acbdeaf30d30b42546cf84fa43fb41872994ed4f9450c68b61a14aaf24ca9a",
-    "extract_dir": "schemacrawler-16.14.4-distribution\\_schemacrawler",
-    "bin": "schemacrawler.cmd",
-    "env_set": {
-        "SCHEMACRAWLER_HOME": "$dir"
-    },
-    "checkver": {
-        "github": "https://github.com/schemacrawler/SchemaCrawler"
-    },
-    "autoupdate": {
-        "url": "https://github.com/schemacrawler/SchemaCrawler/releases/download/v$version/schemacrawler-$version-distribution.zip",
-        "extract_dir": "schemacrawler-$version"
-    },
-	"post_install": "schemacrawler -V"
+  "description": "SchemaCrawler - Free database schema discovery and comprehension tool",   
+  "version": "16.14.4",
+  "homepage": "https://www.schemacrawler.com/",
+  "license": "EPL-2.0",
+  "url": "https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v16.14.4/SchemaCrawler-16.14.4.msi",
+  "hash": "a72a9a5b22170d0c196878716bd125b0249ed7c557731e78147a7ae49f356950",
+  "extract_to": "schemacrawler-16.14.4",
+  "bin": "schemacrawler-16.14.4\\SchemaCrawler\\SchemaCrawler.exe",
+  "checkver": {
+    "github": "https://github.com/schemacrawler/SchemaCrawler"
+  },
+  "autoupdate": {
+    "url": "https://github.com/schemacrawler/SchemaCrawler/releases/download/v$version/schemacrawler-$version-distribution.zip",
+    "extract_to": "schemacrawler-$version"
+  },
+  "post_install": "schemacrawler -V"
 }
