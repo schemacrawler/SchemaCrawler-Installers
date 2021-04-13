@@ -65,8 +65,9 @@ jobs:
         cp \
           ./schemacrawler-website/target/_website/images/* \
           ../schemacrawler-icons/
-        ls -lR ../schemacrawler-lib/
-        ls -lR ../schemacrawler-icons/
+        cd ..  
+        ls -lR ./schemacrawler-lib/
+        ls -lR ./schemacrawler-icons/
 
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
@@ -118,8 +119,8 @@ jobs:
       shell: bash
       run: |
         # Build installer
-        ls -lR ../schemacrawler-lib/
-        ls -lR ../schemacrawler-icons/
+        ls -lR ./schemacrawler-lib/
+        ls -lR ./schemacrawler-icons/
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
@@ -173,8 +174,8 @@ jobs:
       shell: bash
       run: |
         # Build installer
-        ls -lR ../schemacrawler-lib/
-        ls -lR ../schemacrawler-icons/
+        ls -lR ./schemacrawler-lib/
+        ls -lR ./schemacrawler-icons/
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
