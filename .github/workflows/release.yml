@@ -226,8 +226,7 @@ jobs:
       run: |
         # Show Scoop manifest
         pwd
-        ls -l s*
-        cat schemacrawler*
+        ls -l
         
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: create-release
