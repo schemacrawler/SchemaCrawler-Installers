@@ -214,10 +214,10 @@ jobs:
         echo ::set-output name=msi_sha256::"$MSI_SHA256"
     - id: scoop-manifest
       name: Create Scoop Manifest
-      uses: pedrolamas/handlebars-action@v1.0.3
+      uses: cuchi/jinja2-action@v1.2.0
       with:
-        files: '**/*.template'
-        output-filename: './{{ file.name }}'
+        template: src/scoop/schemacrawler.json.template
+        output_file: ./schemacrawler.json
       env:
         MSI_SHA256: ${{ steps.calculate-msi-checksum.outputs.msi_sha256 }}
     - id: show-scoop-json
@@ -227,6 +227,7 @@ jobs:
         # Show Scoop manifest
         pwd
         ls -l
+        cat schemacrawler.json
         
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: create-release
