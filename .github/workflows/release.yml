@@ -114,10 +114,6 @@ jobs:
       shell: bash
       run: |
         # Build installer
-        pwd
-        ls -l
-        ls -lR ./schemacrawler-lib/
-        ls -lR ./schemacrawler-icons/
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
@@ -169,8 +165,6 @@ jobs:
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
           ./schemacrawler-installers/SchemaCrawler-16.14.4.msi \
-          | head -n 1 \
-          | sed -e 's/\s.*$//' \
           > ./schemacrawler-installers/SchemaCrawler-16.14.4.msi.SHA256
         ls -l ./schemacrawler-installers
 
@@ -203,6 +197,32 @@ jobs:
       with:
         name: windows-installer
 
+# Create Release - CREATE SCOOP MANIFEST
+    - id: calculate-msi-checksum
+      name: Calculate MSI file checksum
+      shell: bash
+      run: |
+        # Calculate MSI file checksum
+        MSI_SHA256=" \
+        sha256sum -b \
+          ./SchemaCrawler-16.14.4.msi \
+          | head -n 1 \
+          | sed -e 's/\s.*$//' \
+          | tr --delete '\n' \
+        "
+        echo "Calculated MSI checksum: "
+        echo "$MSI_SHA256"
+        echo "~~"
+        echo ::set-output name=msi_sha256::"$MSI_SHA256"
+    - id: scoop-manifest
+      name: Create Scoop Manifest
+      shell: bash
+      run: |
+        # Create Scoop manifest
+        echo "$MSI_SHA256"
+      env:
+        MSI_SHA256: ${{ steps.calculate-msi-checksum.outputs.msi_sha256 }}
+        
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: create-release
       name: Create GitHub release
