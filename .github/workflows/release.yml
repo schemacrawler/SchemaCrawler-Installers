@@ -214,7 +214,7 @@ jobs:
         echo ::set-output name=msi_sha256::"$MSI_SHA256"
     - id: scoop-manifest
       name: Create Scoop Manifest
-      uses: pedrolamas/handlebars-action@latest
+      uses: pedrolamas/handlebars-action
       with:
         files: '**/*.template'
         output-filename: './{{ file.name }}'
@@ -233,6 +233,7 @@ jobs:
     - id: create-release
       name: Create GitHub release
       uses: actions/create-release@latest
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -245,6 +246,7 @@ jobs:
     - id: release-linux-installer
       name: Release Linux installer
       uses: actions/upload-release-asset@latest
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -255,6 +257,7 @@ jobs:
     - id: release-linux-installer-sha256
       name: Release Linux installer SHA256
       uses: actions/upload-release-asset@latest
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -265,6 +268,7 @@ jobs:
     - id: release-windows-installer
       name: Release Windows installer
       uses: actions/upload-release-asset@latest
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -275,6 +279,7 @@ jobs:
     - id: release-windows-installer-sha256
       name: Release Windows installer SHA256
       uses: actions/upload-release-asset@latest
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
