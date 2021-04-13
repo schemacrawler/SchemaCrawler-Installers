@@ -12,7 +12,7 @@ on:
 jobs:
 
   build-schemacrawler:
-    name: Build SchemaCrawler distribution
+    name: Build SchemaCrawler
     runs-on: ubuntu-latest
     steps:
 
@@ -65,8 +65,8 @@ jobs:
         cp \
           ./schemacrawler-website/target/_website/images/* \
           ../schemacrawler-icons/
-        cd ..
-        ls -lR
+        ls -lR ../schemacrawler-lib/
+        ls -lR ../schemacrawler-icons/
 
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
@@ -117,7 +117,9 @@ jobs:
       name: Build installer
       shell: bash
       run: |
-        # Build installer        
+        # Build installer
+        ls -lR ../schemacrawler-lib/
+        ls -lR ../schemacrawler-icons/
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
@@ -165,13 +167,15 @@ jobs:
       name: Download distribution - icons/ folder
       uses: actions/download-artifact@v2
       with:
-        name: schemacrawler-icons        
+        name: schemacrawler-icons
     - id: build-installer
       name: Build installer
       shell: bash
       run: |
         # Build installer
-        mkdir ./schemacrawler-icons
+        ls -lR ../schemacrawler-lib/
+        ls -lR ../schemacrawler-icons/
+        mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
           ./schemacrawler-installers/SchemaCrawler-16.14.4.msi \
