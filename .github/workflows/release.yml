@@ -107,15 +107,8 @@ jobs:
 
 # Build Linux Installer - BUILD INSTALLER
     - id: download-distrib-lib
-      name: Download distribution - lib/ folder
+      name: Download distribution
       uses: actions/download-artifact@v2
-      with:
-        name: schemacrawler-lib
-    - id: download-distrib-icons
-      name: Download distribution - icons/ folder
-      uses: actions/download-artifact@v2
-      with:
-        name: schemacrawler-icons
     - id: build-installer
       name: Build installer
       shell: bash
@@ -165,22 +158,13 @@ jobs:
 
 # Build Windows Installer - BUILD INSTALLER
     - id: download-distrib-lib
-      name: Download distribution - lib/ folder
+      name: Download distribution
       uses: actions/download-artifact@v2
-      with:
-        name: schemacrawler-lib
-    - id: download-distrib-icons
-      name: Download distribution - icons/ folder
-      uses: actions/download-artifact@v2
-      with:
-        name: schemacrawler-icons
     - id: build-installer
       name: Build installer
       shell: bash
       run: |
         # Build installer
-        ls -lR ./schemacrawler-lib/
-        ls -lR ./schemacrawler-icons/
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
@@ -213,7 +197,6 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: linux-installer
-
     - id: download-windows-installer
       name: Download Windows installer
       uses: actions/download-artifact@v2
