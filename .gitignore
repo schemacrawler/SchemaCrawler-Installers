@@ -7,4 +7,4 @@
 ./schemacrawler-lib/
 ./schemacrawler-icons/
 ./schemacrawler-installer/
-/scoop/SchemaCrawler-*.msi*
+**/SchemaCrawler-*.msi*

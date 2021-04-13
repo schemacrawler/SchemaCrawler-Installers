@@ -210,18 +210,24 @@ jobs:
           | sed -e 's/\s.*$//' \
           | tr --delete '\n' \
         `
-        echo "Calculated MSI checksum: "
-        echo "$MSI_SHA256"
-        echo "~~"
+        echo "Calculated MSI checksum: $MSI_SHA256 ~~"
         echo ::set-output name=msi_sha256::"$MSI_SHA256"
     - id: scoop-manifest
       name: Create Scoop Manifest
-      shell: bash
-      run: |
-        # Create Scoop manifest
-        echo "$MSI_SHA256"
+      uses: pedrolamas/handlebars-action@latest
+      with:
+        files: '**/*.template'
+        output-filename: './{{ file.name }}'
       env:
         MSI_SHA256: ${{ steps.calculate-msi-checksum.outputs.msi_sha256 }}
+    - id: show-scoop-json
+      name: Show Scoop manifest
+      shell: bash
+      run: |
+        # Show Scoop manifest
+        pwd
+        ls -l s*
+        cat schemacrawler*
         
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: create-release
