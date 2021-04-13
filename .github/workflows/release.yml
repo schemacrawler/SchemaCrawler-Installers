@@ -197,7 +197,7 @@ jobs:
       with:
         name: windows-installer
 
-# Create Release - CREATE SCOOP MANIFEST
+# Create Release - CREATE SCOOP MANIFEST 
     - id: calculate-msi-checksum
       name: Calculate MSI file checksum
       shell: bash
