@@ -203,13 +203,13 @@ jobs:
       shell: bash
       run: |
         # Calculate MSI file checksum
-        MSI_SHA256=" \
+        MSI_SHA256=` \
         sha256sum -b \
           ./SchemaCrawler-16.14.4.msi \
           | head -n 1 \
           | sed -e 's/\s.*$//' \
           | tr --delete '\n' \
-        "
+        `
         echo "Calculated MSI checksum: "
         echo "$MSI_SHA256"
         echo "~~"
