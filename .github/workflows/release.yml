@@ -214,7 +214,7 @@ jobs:
         echo ::set-output name=msi_sha256::"$MSI_SHA256"
     - id: scoop-manifest
       name: Create Scoop Manifest
-      uses: pedrolamas/handlebars-action
+      uses: pedrolamas/handlebars-action@v1.0.3
       with:
         files: '**/*.template'
         output-filename: './{{ file.name }}'
