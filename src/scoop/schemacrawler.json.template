@@ -4,7 +4,7 @@
   "homepage": "https://www.schemacrawler.com/",
   "license": "EPL-2.0",
   "url": "https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v16.14.4/SchemaCrawler-16.14.4.msi",
-  "hash": "{{ env.[MSI_SHA256] }}"
+  "hash": "{{ env.['MSI_SHA256'] }}"
   "extract_to": "schemacrawler-16.14.4",
   "bin": "schemacrawler-16.14.4\\SchemaCrawler\\SchemaCrawler.exe",
   "checkver": {
