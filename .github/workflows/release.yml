@@ -18,6 +18,9 @@ jobs:
     steps:
 
 # Build SchemaCrawler - SETUP BUILD ENVIRONMENT
+    - id: checkout-code
+      name: Checkout code
+      uses: actions/checkout@v2
     - id: checkout-schemacrawler
       name: Checkout SchemaCrawler code
       uses: actions/checkout@v2
