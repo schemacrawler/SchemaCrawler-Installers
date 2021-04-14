@@ -51,6 +51,10 @@ jobs:
       shell: bash
       run: |
         # Build distribution
+        mkdir ./schemacrawler-scoop-manifest-template
+        cp \
+          ./src/scoop/schemacrawler.* \
+          ./schemacrawler-scoop-manifest-template/
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
         cd SchemaCrawler
@@ -69,6 +73,7 @@ jobs:
         cd ..
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
+        ls -lR ./schemacrawler-scoop-manifest/
 
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
@@ -84,6 +89,13 @@ jobs:
       with:
         path: ./schemacrawler-icons/
         name: schemacrawler-icons
+        retention-days: 1
+    - id: upload-distrib-scoop-manifest
+      name: Upload distribution - scoop-manifest/ folder
+      uses: actions/upload-artifact@v2
+      with:
+        path: ./schemacrawler-scoop-manifest-template/
+        name: schemacrawler-scoop-manifest-template
         retention-days: 1
 
 
@@ -196,6 +208,11 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: windows-installer
+    - id: download-scoop-manifest-template
+      name: Download Scoop manifest template
+      uses: actions/download-artifact@v2
+      with:
+        name: schemacrawler-scoop-manifest-template
 
 # Create Release - CREATE SCOOP MANIFEST
     - id: create-scoop-manifest
@@ -214,7 +231,7 @@ jobs:
         echo ::set-output name=msi_sha256::"$MSI_SHA256"
         curl -sSL https://git.io/get-mo -o mo
         chmod +x mo
-        cat src/scoop/schemacrawler.json.template | ./mo > schemacrawler.json
+        cat ./schemacrawler.json.template | ./mo > ./schemacrawler.json
 
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: upload-artifacts
