@@ -93,8 +93,8 @@ jobs:
         path: ./schemacrawler-icons/
         name: schemacrawler-icons
         retention-days: 1
-    - id: upload-distrib-scoop-manifest
-      name: Upload distribution - scoop-manifest/ folder
+    - id: upload-distrib-scoop-manifest-template
+      name: Upload distribution - scoop-manifest-template/ folder
       uses: actions/upload-artifact@v2
       with:
         path: ./schemacrawler-scoop-manifest-template/
@@ -223,7 +223,7 @@ jobs:
       shell: bash
       run: |
         # Create Scoop manifest
-        MSI_SHA256=` \
+        export MSI_SHA256=` \
         sha256sum -b \
           ./SchemaCrawler-16.14.4.msi \
           | head -n 1 \
@@ -241,7 +241,7 @@ jobs:
       name: Upload installers
       uses: actions/upload-artifact@v2
       with:
-        name: mutation-test-results
+        name: all-installers
         path: |
           schemacrawler-16.14.4.deb
           schemacrawler-16.14.4.deb.SHA256
