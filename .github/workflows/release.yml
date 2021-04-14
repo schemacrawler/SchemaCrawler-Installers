@@ -76,7 +76,7 @@ jobs:
         cd ..
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
-        ls -lR ./schemacrawler-scoop-manifest/
+        ls -lR ./schemacrawler-scoop-manifest-template/
 
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
