@@ -132,11 +132,11 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
-          ./schemacrawler-installers/schemacrawler_16.15.1-1_amd64.deb \
-          ./schemacrawler-installers/schemacrawler-16.15.1.deb
+          ./schemacrawler-installers/schemacrawler_16.15.2-1_amd64.deb \
+          ./schemacrawler-installers/schemacrawler-16.15.2.deb
         sha256sum -b \
-          ./schemacrawler-installers/schemacrawler-16.15.1.deb \
-          > ./schemacrawler-installers/schemacrawler-16.15.1.deb.SHA256
+          ./schemacrawler-installers/schemacrawler-16.15.2.deb \
+          > ./schemacrawler-installers/schemacrawler-16.15.2.deb.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Linux Installer - SAVE INSTALLER
@@ -179,8 +179,8 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
-          ./schemacrawler-installers/SchemaCrawler-16.15.1.msi \
-          > ./schemacrawler-installers/SchemaCrawler-16.15.1.msi.SHA256
+          ./schemacrawler-installers/SchemaCrawler-16.15.2.msi \
+          > ./schemacrawler-installers/SchemaCrawler-16.15.2.msi.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Windows Installer - SAVE INSTALLER
@@ -225,7 +225,7 @@ jobs:
         # Create Scoop manifest
         export MSI_SHA256=` \
         sha256sum -b \
-          ./SchemaCrawler-16.15.1.msi \
+          ./SchemaCrawler-16.15.2.msi \
           | head -n 1 \
           | sed -e 's/\s.*$//' \
           | tr --delete '\n' \
@@ -243,10 +243,10 @@ jobs:
       with:
         name: all-installers
         path: |
-          schemacrawler-16.15.1.deb
-          schemacrawler-16.15.1.deb.SHA256
-          SchemaCrawler-16.15.1.msi
-          SchemaCrawler-16.15.1.msi.SHA256
+          schemacrawler-16.15.2.deb
+          schemacrawler-16.15.2.deb.SHA256
+          SchemaCrawler-16.15.2.msi
+          SchemaCrawler-16.15.2.msi.SHA256
           schemacrawler.json
         retention-days: 1
     - id: create-release
@@ -270,8 +270,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: schemacrawler-16.15.1.deb
-        asset_name: schemacrawler-16.15.1.deb
+        asset_path: schemacrawler-16.15.2.deb
+        asset_name: schemacrawler-16.15.2.deb
         asset_content_type: application/x-binary
     - id: release-linux-installer-sha256
       name: Release Linux installer SHA256
@@ -281,8 +281,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: schemacrawler-16.15.1.deb.SHA256
-        asset_name: schemacrawler-16.15.1.deb.SHA256
+        asset_path: schemacrawler-16.15.2.deb.SHA256
+        asset_name: schemacrawler-16.15.2.deb.SHA256
         asset_content_type: text/plain
     - id: release-windows-installer
       name: Release Windows installer
@@ -292,8 +292,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: SchemaCrawler-16.15.1.msi
-        asset_name: SchemaCrawler-16.15.1.msi
+        asset_path: SchemaCrawler-16.15.2.msi
+        asset_name: SchemaCrawler-16.15.2.msi
         asset_content_type: application/x-binary
     - id: release-windows-installer-sha256
       name: Release Windows installer SHA256
@@ -303,8 +303,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: SchemaCrawler-16.15.1.msi.SHA256
-        asset_name: SchemaCrawler-16.15.1.msi.SHA256
+        asset_path: SchemaCrawler-16.15.2.msi.SHA256
+        asset_name: SchemaCrawler-16.15.2.msi.SHA256
         asset_content_type: text/plain
     - id: release-scoop-manifest
       name: Release Scoop manifest
