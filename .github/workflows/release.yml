@@ -317,3 +317,24 @@ jobs:
         asset_path: schemacrawler.json
         asset_name: schemacrawler.json
         asset_content_type: application/json
+
+
+### PUBLISH WINGET PACKAGE
+  publish-winget-pkg:
+    name: Publish winget package
+    runs-on: windows-latest
+
+    steps:
+
+# Publish winget package - PUBLISH WINGET PACKAGE
+    - id: publish-winget-pkg
+      name: Submit package to Windows Package Manager Community Repository
+      shell: powershell
+      run: |
+        iwr https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+        .\wingetcreate.exe update schemacrawler.schemacrawler `
+        --version v16.15.8 `
+        --urls `
+        https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v16.15.8/SchemaCrawler-16.15.8.msi `
+        --submit `
+        --token ${{ secrets.WINGET_PUSH_TOKEN }}
