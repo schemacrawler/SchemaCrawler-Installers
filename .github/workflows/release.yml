@@ -18,35 +18,11 @@ jobs:
     steps:
 
 # Build SchemaCrawler - SETUP BUILD ENVIRONMENT
-    - id: checkout-code
-      name: Checkout code
-      uses: actions/checkout@v2
-    - id: checkout-schemacrawler
-      name: Checkout SchemaCrawler code
-      uses: actions/checkout@v2
+    - id: prepare-maven-build
+      name: Prepare Maven build
+      uses: sualeh/prepare-maven-build@v1.2.0
       with:
-        repository: schemacrawler/SchemaCrawler
-        path: SchemaCrawler
-    - id: setup-jdk
-      name: Setup JDK
-      uses: actions/setup-java@v2
-      with:
-        distribution: zulu
-        java-version: 11
-    - id: cache-m2
-      name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
-    - id: cache-ivy2
-      name: Cache Ivy packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.ivy2
-        key: ${{ runner.os }}-ivy2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-ivy2
+        java-version: 17
 
 # Build SchemaCrawler - BUILD FOR DISTRIBUTION
     - id: build
@@ -118,7 +94,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: zulu
-        java-version: 15
+        java-version: 17
 
 # Build Linux Installer - BUILD INSTALLER
     - id: download-distrib-lib
@@ -165,7 +141,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: zulu
-        java-version: 15
+        java-version: 17
 
 # Build Windows Installer - BUILD INSTALLER
     - id: download-distrib-lib
