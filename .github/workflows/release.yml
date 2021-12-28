@@ -312,6 +312,7 @@ jobs:
 # Publish winget package - PUBLISH WINGET PACKAGE
     - id: publish-winget-pkg
       name: Submit package to Windows Package Manager Community Repository
+      if: startsWith(github.ref, 'refs/tags/')
       shell: powershell
       run: |
         # Submit package to Windows Package Manager Community Repository
