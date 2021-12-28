@@ -25,6 +25,12 @@ jobs:
         java-version: 17
 
 # Build SchemaCrawler - BUILD FOR DISTRIBUTION
+    - id: checkout-schemacrawler
+      name: Checkout SchemaCrawler code
+      uses: actions/checkout@v2
+      with:
+        repository: schemacrawler/SchemaCrawler
+        path: SchemaCrawler
     - id: build
       name: Build distribution
       shell: bash
