@@ -36,10 +36,6 @@ jobs:
       shell: bash
       run: |
         # Build distribution
-        mkdir ./schemacrawler-scoop-manifest-template
-        cp \
-          ./src/scoop/schemacrawler.* \
-          ./schemacrawler-scoop-manifest-template/
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
         cd SchemaCrawler
@@ -58,7 +54,6 @@ jobs:
         cd ..
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
-        ls -lR ./schemacrawler-scoop-manifest-template/
 
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
@@ -74,13 +69,6 @@ jobs:
       with:
         path: ./schemacrawler-icons/
         name: schemacrawler-icons
-        retention-days: 1
-    - id: upload-distrib-scoop-manifest-template
-      name: Upload distribution - scoop-manifest-template/ folder
-      uses: actions/upload-artifact@v2
-      with:
-        path: ./schemacrawler-scoop-manifest-template/
-        name: schemacrawler-scoop-manifest-template
         retention-days: 1
 
 
@@ -193,30 +181,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: windows-installer
-    - id: download-scoop-manifest-template
-      name: Download Scoop manifest template
-      uses: actions/download-artifact@v2
-      with:
-        name: schemacrawler-scoop-manifest-template
 
-# Create Release - CREATE SCOOP MANIFEST
-    - id: create-scoop-manifest
-      name: Create Scoop manifest
-      shell: bash
-      run: |
-        # Create Scoop manifest
-        export MSI_SHA256=` \
-        sha256sum -b \
-          ./SchemaCrawler-16.16.6.msi \
-          | head -n 1 \
-          | sed -e 's/\s.*$//' \
-          | tr --delete '\n' \
-        `
-        echo "Calculated MSI checksum: $MSI_SHA256 ~~"
-        echo ::set-output name=msi_sha256::"$MSI_SHA256"
-        curl -sSL https://git.io/get-mo -o mo
-        chmod +x mo
-        cat ./schemacrawler.json.template | ./mo > ./schemacrawler.json
 
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: upload-artifacts
@@ -288,17 +253,6 @@ jobs:
         asset_path: SchemaCrawler-16.16.6.msi.SHA256
         asset_name: SchemaCrawler-16.16.6.msi.SHA256
         asset_content_type: text/plain
-    - id: release-scoop-manifest
-      name: Release Scoop manifest
-      uses: actions/upload-release-asset@latest
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: schemacrawler.json
-        asset_name: schemacrawler.json
-        asset_content_type: application/json
 
 
 ### PUBLISH WINGET PACKAGE
