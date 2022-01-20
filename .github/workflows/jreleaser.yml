@@ -22,5 +22,3 @@ jobs:
       uses: jreleaser/release-action@v1
       env:
         JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        arguments: config
