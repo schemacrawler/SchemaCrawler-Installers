@@ -10,10 +10,11 @@ jobs:
 
     steps:
 
-    - id: prepare-maven-build
-      name: Prepare Maven build
-      uses: sualeh/prepare-maven-build@v1.2.1
+    - id: setup-java
+      name: Set up JDK
+      uses: actions/setup-java@v2
       with:
+        distribution: temurin
         java-version: 17
 
 # CREATE A RELEASE
