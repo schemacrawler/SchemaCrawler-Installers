@@ -32,5 +32,5 @@ project:
   versionPattern: SEMVER
 release:
   github:
-    skipRelease: false
-    skipTag: false
+    skipRelease: true
+    skipTag: true
