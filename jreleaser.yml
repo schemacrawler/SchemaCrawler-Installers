@@ -32,4 +32,5 @@ project:
   versionPattern: SEMVER
 release:
   github:
-    token: __DO_NOT_SET_HERE__
+    skipRelease: false
+    skipTag: false
