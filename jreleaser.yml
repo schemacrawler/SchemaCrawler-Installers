@@ -30,3 +30,6 @@ project:
   extraProperties:
     inceptionYear: 2000
   versionPattern: SEMVER
+release:
+  github:
+    token: __DO_NOT_SET_HERE__
