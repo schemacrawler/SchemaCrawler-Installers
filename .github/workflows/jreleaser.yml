@@ -1,0 +1,31 @@
+name: jreleaser
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - id: prepare-maven-build
+      name: Prepare Maven build
+      uses: sualeh/prepare-maven-build@v1.2.1
+      with:
+        java-version: 17
+
+    - id: checkout-schemacrawler
+      name: Checkout SchemaCrawler code
+      uses: actions/checkout@v2
+      with:
+        repository: schemacrawler/SchemaCrawler
+        path: SchemaCrawler
+
+# CREATE A RELEASE
+    - id: jreleaser
+      name: Run JReleaser
+      uses: jreleaser/release-action@v1
+      env:
+        JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
