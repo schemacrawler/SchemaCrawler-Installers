@@ -16,13 +16,6 @@ jobs:
       with:
         java-version: 17
 
-    - id: checkout-schemacrawler
-      name: Checkout SchemaCrawler code
-      uses: actions/checkout@v2
-      with:
-        repository: schemacrawler/SchemaCrawler
-        path: SchemaCrawler
-
 # CREATE A RELEASE
     - id: jreleaser
       name: Run JReleaser
