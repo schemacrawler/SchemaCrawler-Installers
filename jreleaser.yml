@@ -30,8 +30,3 @@ project:
   extraProperties:
     inceptionYear: 2000
   versionPattern: SEMVER
-
-distributions:
-  app:
-    artifacts:
-      - path: path/to/{{distributionName}}-{{projectVersion}}.zip
