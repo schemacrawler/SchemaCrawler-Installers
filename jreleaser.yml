@@ -30,6 +30,3 @@ project:
   extraProperties:
     inceptionYear: 2000
   versionPattern: SEMVER
-release:
-  github:
-    enabled: false
