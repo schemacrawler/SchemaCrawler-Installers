@@ -34,3 +34,7 @@ release:
   github:
     skipRelease: true
     skipTag: true
+announce:
+  twitter:
+    active: ALWAYS
+    status: '🚀 {{projectName}} {{projectVersion}} has been released! {{releaseNotesUrl}}'
