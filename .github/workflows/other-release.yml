@@ -51,4 +51,4 @@ jobs:
         JRELEASER_CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
         JRELEASER_CHOCOLATEY_GITHUB_TOKEN: ${{ secrets.CHOCOLATEY_GITHUB_TOKEN }}
       with:
-        arguments: "-g full-release"
+        arguments: "full-release -g"
