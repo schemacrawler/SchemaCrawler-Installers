@@ -60,3 +60,17 @@ packagers:
     remoteBuild: true
     title: SchemaCrawler
     iconUrl: https://rawcdn.githack.com/duke/app/0934fa1fa3f0bd09c0c8c39fbdeb5df2ce507457/icon.png
+distributions:
+  app:
+    active: ALWAYS
+    type: JAVA_BINARY
+    executable: schemacrawler
+    executableExtension: cmd
+    artifacts:
+      - path: schemacrawler-{{projectVersion}}-bin.zip
+    java:
+      groupId: us.fatehi
+      artifactId: schemacrawler
+      version: 8
+      mainClass: schemacrawler.Main
+      multiProject: false
