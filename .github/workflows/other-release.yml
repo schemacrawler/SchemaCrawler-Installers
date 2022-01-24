@@ -52,3 +52,11 @@ jobs:
         JRELEASER_CHOCOLATEY_GITHUB_TOKEN: ${{ secrets.CHOCOLATEY_GITHUB_TOKEN }}
       with:
         arguments: "full-release -g"
+    - id: persist-jreleaser-out
+      name: Persist JReleaser out/ directory
+      uses: actions/upload-artifact@v2
+      with:
+        name: jreleaser-out
+        path: |
+          ./out/
+        retention-days: 1
