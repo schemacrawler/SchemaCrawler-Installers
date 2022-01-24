@@ -37,7 +37,7 @@ release:
 announce:
   twitter:
     active: ALWAYS
-    status: '🚀 {{projectName}} {{projectVersion}} has been released! {{releaseNotesUrl}}'
+    status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}}"
 packagers:
   chocolatey:
     active: ALWAYS
@@ -50,13 +50,13 @@ packagers:
       active: ALWAYS
       owner: schemacrawler
       name: chocolatey-bucket
-      tagName: '{{distributionName}} {{tagName}}'
+      tagName: "{{distributionName}} {{tagName}}"
       branch: HEAD
       username: schemacrawler
-      commitMessage: '{{distributionName}} {{tagName}}'
+      commitMessage: "{{distributionName}} {{tagName}}"
     packageName: schemacrawler
     username: sualeh
     source: https://push.chocolatey.org/
-    remoteBuild: true
+    remoteBuild: false
     title: SchemaCrawler
     iconUrl: https://rawcdn.githack.com/duke/app/0934fa1fa3f0bd09c0c8c39fbdeb5df2ce507457/icon.png
