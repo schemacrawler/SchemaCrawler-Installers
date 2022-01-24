@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.16.9
+  version: 16.16.10
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -38,3 +38,25 @@ announce:
   twitter:
     active: ALWAYS
     status: '🚀 {{projectName}} {{projectVersion}} has been released! {{releaseNotesUrl}}'
+packagers:
+  chocolatey:
+    active: ALWAYS
+    continueOnError: false
+    downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
+    commitAuthor:
+      name: schemacrawler
+      email: sualeh@hotmail.com
+    bucket:
+      active: ALWAYS
+      owner: schemacrawler
+      name: chocolatey-bucket
+      tagName: '{{distributionName}} {{tagName}}'
+      branch: HEAD
+      username: schemacrawler
+      commitMessage: '{{distributionName}} {{tagName}}'
+    packageName: schemacrawler
+    username: sualeh
+    source: https://push.chocolatey.org/
+    remoteBuild: true
+    title: SchemaCrawler
+    iconUrl: https://rawcdn.githack.com/duke/app/0934fa1fa3f0bd09c0c8c39fbdeb5df2ce507457/icon.png
