@@ -57,6 +57,6 @@ packagers:
     packageName: schemacrawler
     username: sualeh
     source: https://push.chocolatey.org/
-    remoteBuild: false
+    remoteBuild: true
     title: SchemaCrawler
     iconUrl: https://rawcdn.githack.com/duke/app/0934fa1fa3f0bd09c0c8c39fbdeb5df2ce507457/icon.png
