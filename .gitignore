@@ -8,5 +8,7 @@
 ./schemacrawler-icons/
 ./schemacrawler-installer/
 **/SchemaCrawler-*.msi*
-./out/
+out/
 trace.log
+/schemacrawler-*-bin.zip
+/schemacrawler-*-distribution.zip
