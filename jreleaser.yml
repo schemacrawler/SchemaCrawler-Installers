@@ -47,13 +47,13 @@ packagers:
       name: schemacrawler
       email: sualeh@hotmail.com
     bucket:
-      active: ALWAYS
-      owner: schemacrawler
-      name: chocolatey-bucket
-      tagName: "{{distributionName}} {{tagName}}"
-      branch: HEAD
-      username: schemacrawler
-      commitMessage: "{{distributionName}} {{tagName}}"
+      active: NEVER
+      # owner: schemacrawler
+      # name: chocolatey-bucket
+      # tagName: "{{distributionName}} {{tagName}}"
+      # branch: HEAD
+      # username: schemacrawler
+      # commitMessage: "{{distributionName}} {{tagName}}"
     packageName: schemacrawler
     username: sualeh
     source: https://push.chocolatey.org/
