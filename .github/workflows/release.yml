@@ -11,18 +11,11 @@ on:
 
 jobs:
 
-### BUILD SCHEMACRAWLER
-  build-schemacrawler:
-    name: Build SchemaCrawler
+### DOWNLOAD SCHEMACRAWLER DISTRIBUTION
+  download-schemacrawler-distribution:
+    name: Download SchemaCrawler distribution
     runs-on: ubuntu-latest
     steps:
-
-# Build SchemaCrawler - SETUP BUILD ENVIRONMENT
-    - id: prepare-maven-build
-      name: Prepare Maven build
-      uses: sualeh/prepare-maven-build@v1.2.1
-      with:
-        java-version: 17
 
 # Build SchemaCrawler - BUILD FOR DISTRIBUTION
     - id: checkout-schemacrawler
@@ -31,22 +24,19 @@ jobs:
       with:
         repository: schemacrawler/SchemaCrawler
         path: SchemaCrawler
-    - id: build
-      name: Build distribution
+    - id: obtain-distribution
+      name: Obtain distribution
       shell: bash
       run: |
-        # Build distribution
+        # Obtain distribution
+        wget -N -q \
+        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.10/schemacrawler-16.16.10-bin.zip
+        test -f schemacrawler-16.16.10-bin.zip && echo "Downloaded binary distribution"
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        cd SchemaCrawler
-        mvn \
-          --no-transfer-progress \
-          --batch-mode \
-          -Ddistrib \
-          -DskipTests=true \
-          package
+        unzip schemacrawler-16.16.10-bin.zip
         cp \
-          ./schemacrawler-distrib/target/_expanded-distribution/lib/* \
+          ./schemacrawler-16.16.10-bin/lib/* \
           ../schemacrawler-lib/
         cp \
           ./schemacrawler-website/target/_website/images/* \
