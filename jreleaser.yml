@@ -34,10 +34,9 @@ release:
   github:
     skipRelease: true
     skipTag: true
-    repoOwner: schemacrawler
-    repoName: SchemaCrawler
-    # repoUrl: https://github.com/schemacrawler/SchemaCrawler
-    # issueTrackerUrl: https://github.com/schemacrawler/SchemaCrawler/issues
+    owner: schemacrawler
+    name: SchemaCrawler
+    username: schemacrawler
 announce:
   twitter:
     active: ALWAYS
