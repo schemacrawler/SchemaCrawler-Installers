@@ -37,10 +37,10 @@ jobs:
         unzip schemacrawler-16.16.10-bin.zip
         cp \
           ./schemacrawler-16.16.10-bin/lib/* \
-          ../schemacrawler-lib/
+          ./schemacrawler-lib/
         cp \
           ./schemacrawler-website/target/_website/images/* \
-          ../schemacrawler-icons/
+          ./schemacrawler-icons/
         cd ..
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
