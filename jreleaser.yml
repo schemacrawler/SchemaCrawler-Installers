@@ -34,6 +34,10 @@ release:
   github:
     skipRelease: true
     skipTag: true
+    repoOwner: schemacrawler
+    repoName: SchemaCrawler
+    # repoUrl: https://github.com/schemacrawler/SchemaCrawler
+    # issueTrackerUrl: https://github.com/schemacrawler/SchemaCrawler/issues
 announce:
   twitter:
     active: ALWAYS
@@ -43,9 +47,6 @@ packagers:
     active: ALWAYS
     continueOnError: false
     downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
-    extraProperties:
-      repoUrl: https://github.com/schemacrawler/SchemaCrawler
-      issueTrackerUrl: https://github.com/schemacrawler/SchemaCrawler/issues
     commitAuthor:
       name: schemacrawler
       email: sualeh@hotmail.com
