@@ -192,11 +192,11 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: ${{ github.ref_name }}
-        body: |
-          SchemaCrawler Release ${{ github.sha }}
-        generate_release_notes: true
         draft: false
         prerelease: true
+        body: |
+          See the change history at https://www.schemacrawler.com/changes-report.html
+        generate_release_notes: true
         files: |
           schemacrawler-16.16.10.deb
           schemacrawler-16.16.10.deb.SHA256
