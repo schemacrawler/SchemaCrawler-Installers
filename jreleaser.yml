@@ -53,7 +53,7 @@ packagers:
       active: ALWAYS
       owner: schemacrawler
       name: chocolatey-bucket
-      tagName: "{{tagName}}"
+      tagName: "v{{projectVersion}}"
       branch: HEAD
       username: schemacrawler
       commitMessage: "{{distributionName}} {{tagName}}"
@@ -64,7 +64,7 @@ packagers:
     title: SchemaCrawler
     iconUrl:  https://rawcdn.githack.com/schemacrawler/SchemaCrawler/bd909f02311d45be1964e2aaf3eda5ebd2153c41/schemacrawler-website/src/site/resources/images/schemacrawler_logo.png
 distributions:
-  app:
+  schemacrawler:
     active: ALWAYS
     type: JAVA_BINARY
     executable: schemacrawler
