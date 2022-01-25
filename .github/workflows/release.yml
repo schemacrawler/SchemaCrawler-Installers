@@ -187,62 +187,21 @@ jobs:
         retention-days: 1
     - id: create-release
       name: Create GitHub release
-      uses: actions/create-release@latest
+      uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ github.ref_name }}
         body: |
           SchemaCrawler Release ${{ github.sha }}
+        generate_release_notes: true
         draft: false
-        prerelease: false
-    - id: release-linux-installer
-      name: Release Linux installer
-      uses: actions/upload-release-asset@latest
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: schemacrawler-16.16.10.deb
-        asset_name: schemacrawler-16.16.10.deb
-        asset_content_type: application/x-binary
-    - id: release-linux-installer-sha256
-      name: Release Linux installer SHA256
-      uses: actions/upload-release-asset@latest
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: schemacrawler-16.16.10.deb.SHA256
-        asset_name: schemacrawler-16.16.10.deb.SHA256
-        asset_content_type: text/plain
-    - id: release-windows-installer
-      name: Release Windows installer
-      uses: actions/upload-release-asset@latest
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: SchemaCrawler-16.16.10.msi
-        asset_name: SchemaCrawler-16.16.10.msi
-        asset_content_type: application/x-binary
-    - id: release-windows-installer-sha256
-      name: Release Windows installer SHA256
-      uses: actions/upload-release-asset@latest
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: SchemaCrawler-16.16.10.msi.SHA256
-        asset_name: SchemaCrawler-16.16.10.msi.SHA256
-        asset_content_type: text/plain
-
+        prerelease: true
+        files: |
+          schemacrawler-16.16.10.deb
+          schemacrawler-16.16.10.deb.SHA256
+          SchemaCrawler-16.16.10.msi
+          SchemaCrawler-16.16.10.msi.SHA256
 
 ### PUBLISH WINGET PACKAGE
   publish-winget-pkg:
