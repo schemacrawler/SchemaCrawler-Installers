@@ -43,23 +43,26 @@ packagers:
     active: ALWAYS
     continueOnError: false
     downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
+    extraProperties:
+      repoUrl: https://github.com/schemacrawler/SchemaCrawler
+      issueTrackerUrl: https://github.com/schemacrawler/SchemaCrawler/issues
     commitAuthor:
       name: schemacrawler
       email: sualeh@hotmail.com
     bucket:
-      active: NEVER
-      # owner: schemacrawler
-      # name: chocolatey-bucket
-      # tagName: "{{distributionName}} {{tagName}}"
-      # branch: HEAD
-      # username: schemacrawler
-      # commitMessage: "{{distributionName}} {{tagName}}"
+      active: ALWAYS
+      owner: schemacrawler
+      name: chocolatey-bucket
+      tagName: "{{tagName}}"
+      branch: HEAD
+      username: schemacrawler
+      commitMessage: "{{distributionName}} {{tagName}}"
     packageName: schemacrawler
     username: sualeh
     source: https://push.chocolatey.org/
     remoteBuild: true
     title: SchemaCrawler
-    iconUrl: https://rawcdn.githack.com/duke/app/0934fa1fa3f0bd09c0c8c39fbdeb5df2ce507457/icon.png
+    iconUrl:  https://rawcdn.githack.com/schemacrawler/SchemaCrawler/bd909f02311d45be1964e2aaf3eda5ebd2153c41/schemacrawler-website/src/site/resources/images/schemacrawler_logo.png
 distributions:
   app:
     active: ALWAYS
