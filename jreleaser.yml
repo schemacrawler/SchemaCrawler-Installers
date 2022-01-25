@@ -39,7 +39,7 @@ release:
     username: schemacrawler
 announce:
   twitter:
-    active: ALWAYS
+    active: NEVER
     status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}}"
 packagers:
   chocolatey:
@@ -71,9 +71,3 @@ distributions:
     executableExtension: cmd
     artifacts:
       - path: schemacrawler-{{projectVersion}}-bin.zip
-    java:
-      groupId: us.fatehi
-      artifactId: schemacrawler
-      version: 8
-      mainClass: schemacrawler.Main
-      multiProject: false
