@@ -39,9 +39,8 @@ jobs:
           ./schemacrawler-16.16.10-bin/lib/* \
           ./schemacrawler-lib/
         cp \
-          ./schemacrawler-website/target/_website/images/* \
+          ./SchemaCrawler/schemacrawler-website/src/site/resources/images/schemacrawler_logo.* \
           ./schemacrawler-icons/
-        cd ..
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
 
