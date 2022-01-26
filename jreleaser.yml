@@ -72,6 +72,7 @@ packagers:
     releaseNotesUrl: https://www.schemacrawler.com/changes-report.html
     extraProperties:
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
+      downloadUrlFrom: "http:schemacrawler"
 distributions:
   schemacrawler:
     active: ALWAYS
@@ -80,3 +81,9 @@ distributions:
     executableExtension: cmd
     artifacts:
       - path: schemacrawler-{{projectVersion}}-bin.zip
+#
+upload:
+  http:
+    schemacrawler:
+      active: NEVER
+      downloadUrl: https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
