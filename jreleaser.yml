@@ -70,6 +70,8 @@ packagers:
     candidate: schemacrawler
     command: MAJOR
     releaseNotesUrl: https://www.schemacrawler.com/changes-report.html
+    extraProperties:
+      downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
 distributions:
   schemacrawler:
     active: ALWAYS
