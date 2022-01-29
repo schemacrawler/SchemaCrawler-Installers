@@ -12,7 +12,7 @@ on:
 jobs:
   release:
     name: Other Releases
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
 
@@ -29,10 +29,7 @@ jobs:
       name: Download distribution
       shell: bash
       run: |
-        # Download distribution
-        wget -N -q \
-        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.10/schemacrawler-16.16.10-distribution.zip
-        test -f schemacrawler-16.16.10-distribution.zip && echo "Downloaded main distribution"
+        # Download binary distribution
         wget -N -q \
         https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.10/schemacrawler-16.16.10-bin.zip
         test -f schemacrawler-16.16.10-bin.zip && echo "Downloaded binary distribution"
