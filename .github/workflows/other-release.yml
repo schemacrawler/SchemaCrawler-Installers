@@ -47,6 +47,7 @@ jobs:
         JRELEASER_SDKMAN_CONSUMER_KEY: ${{ secrets.SDKMAN_CONSUMER_KEY }}
         JRELEASER_SDKMAN_CONSUMER_TOKEN: ${{ secrets.SDKMAN_CONSUMER_TOKEN }}
       with:
+        version: early-access
         arguments: "full-release -g"
     - id: persist-jreleaser-out
       name: Persist JReleaser out/ directory
