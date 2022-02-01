@@ -62,7 +62,9 @@ distributions:
   schemacrawler:
     active: ALWAYS
     type: JAVA_BINARY
-    executable: schemacrawler
+    executable: 
+      linux: schemacrawler.sh
+      windows: schemacrawler.cmd
     executableExtension: cmd
     artifacts:
       - path: schemacrawler-{{projectVersion}}-bin.zip
