@@ -53,8 +53,8 @@ jobs:
           ./out/
         retention-days: 3
 
-  release-windows:
-    name: Other Releases
+  release-ubuntu:
+    name: Other Releases on Ubuntu
     runs-on: ubuntu-latest
 
     steps:
