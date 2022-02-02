@@ -42,7 +42,6 @@ jobs:
       with:
         version: early-access
         arguments: "full-release -g"
-        shell: pwsh
 
   release-ubuntu:
     name: Other Releases on Ubuntu
@@ -65,4 +64,3 @@ jobs:
       with:
         version: early-access
         arguments: "full-release -g"
-        shell: bash
