@@ -19,7 +19,7 @@ env:
   JRELEASER_CHOCOLATEY_GITHUB_TOKEN: ${{ secrets.CHOCOLATEY_GITHUB_TOKEN }}
   JRELEASER_SDKMAN_CONSUMER_KEY: ${{ secrets.SDKMAN_CONSUMER_KEY }}
   JRELEASER_SDKMAN_CONSUMER_TOKEN: ${{ secrets.SDKMAN_CONSUMER_TOKEN }}
-        
+
 jobs:
 
   release-windows:
@@ -43,15 +43,6 @@ jobs:
         version: early-access
         arguments: "full-release -g"
         shell: pwsh
-    - id: persist-jreleaser-out
-      name: Persist JReleaser out/ directory
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: jreleaser-out
-        path: |
-          ./out/
-        retention-days: 3
 
   release-ubuntu:
     name: Other Releases on Ubuntu
@@ -70,17 +61,8 @@ jobs:
         https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.10/schemacrawler-16.16.10-bin.zip
     - id: jreleaser
       name: Run JReleaser
-      uses: jreleaser/release-action@v2
+      uses: jreleaser/release-action@v2.1.0
       with:
         version: early-access
         arguments: "full-release -g"
         shell: bash
-    - id: persist-jreleaser-out
-      name: Persist JReleaser out/ directory
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: jreleaser-out
-        path: |
-          ./out/
-        retention-days: 3
