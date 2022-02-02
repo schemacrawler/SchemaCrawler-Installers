@@ -35,7 +35,7 @@ jobs:
 # CREATE A RELEASE
     - id: jreleaser
       name: Run JReleaser
-      uses: jreleaser/release-action@v1
+      uses: jreleaser/release-action@v2
       env:
         JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         JRELEASER_TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
@@ -49,6 +49,7 @@ jobs:
       with:
         version: early-access
         arguments: "full-release -g"
+        shell: pwsh
     - id: persist-jreleaser-out
       name: Persist JReleaser out/ directory
       uses: actions/upload-artifact@v2
