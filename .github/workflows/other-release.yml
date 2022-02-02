@@ -61,7 +61,7 @@ jobs:
         https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.10/schemacrawler-16.16.10-bin.zip
     - id: jreleaser
       name: Run JReleaser
-      uses: jreleaser/release-action@v2.1.0
+      uses: jreleaser/release-action@v2
       with:
         version: early-access
         arguments: "full-release -g"
