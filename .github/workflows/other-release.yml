@@ -46,13 +46,13 @@ jobs:
         JRELEASER_CHOCOLATEY_GITHUB_TOKEN: ${{ secrets.CHOCOLATEY_GITHUB_TOKEN }}
         JRELEASER_SDKMAN_CONSUMER_KEY: ${{ secrets.SDKMAN_CONSUMER_KEY }}
         JRELEASER_SDKMAN_CONSUMER_TOKEN: ${{ secrets.SDKMAN_CONSUMER_TOKEN }}
-      continue-on-error: true
       with:
         version: early-access
         arguments: "full-release -g"
     - id: persist-jreleaser-out
       name: Persist JReleaser out/ directory
       uses: actions/upload-artifact@v2
+      if: always()
       with:
         name: jreleaser-out
         path: |
