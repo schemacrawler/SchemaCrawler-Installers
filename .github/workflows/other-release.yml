@@ -52,36 +52,3 @@ jobs:
           out/jreleaser/trace.log
           out/jreleaser/output.properties
         retention-days: 3
-
-
-  release-ubuntu:
-    name: Other Releases on Ubuntu
-    runs-on: ubuntu-latest
-
-    steps:
-    - id: checkout-code
-      name: Checkout code
-      uses: actions/checkout@v2
-    - id: download-distribution
-      name: Download distribution
-      shell: bash
-      run: |
-        # Download binary distribution
-        wget -N -q \
-        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.10/schemacrawler-16.16.10-bin.zip
-    - id: jreleaser
-      name: Run JReleaser
-      uses: jreleaser/release-action@v2
-      with:
-        version: early-access
-        arguments: "full-release -g"
-    - id: persist-jreleaser-out
-      name: JReleaser release output
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: ubuntu-jreleaser-out
-        path: |
-          out/jreleaser/trace.log
-          out/jreleaser/output.properties
-        retention-days: 3
