@@ -11,7 +11,7 @@ project:
     SchemaCrawler also generates schema diagrams. You can execute scripts in any
     standard scripting language against your database. You can find potential schema
     design issues with lint.
-  copyright: Copyright (c) 2000-2022, Sualeh Fatehi <sualeh@hotmail.com>.
+  copyright: Copyright (c) 2000-2022, Sualeh Fatehi.
   website: https://www.schemacrawler.com/
   authors:
     - Sualeh Fatehi
