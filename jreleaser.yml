@@ -40,7 +40,7 @@ release:
 announce:
   twitter:
     active: ALWAYS
-    status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}} #OpenSource #Database #DevOps #Java"
+    status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}} #OpenSource #Database #DevOps #DevOpsTools #Java"
 packagers:
   chocolatey:
     active: ALWAYS
