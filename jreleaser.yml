@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.16.10
+  version: 16.16.11
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -50,7 +50,7 @@ packagers:
     username: sualeh
     source: https://push.chocolatey.org/
     title: SchemaCrawler
-    iconUrl:  https://rawcdn.githack.com/schemacrawler/SchemaCrawler/bd909f02311d45be1964e2aaf3eda5ebd2153c41/schemacrawler-website/src/site/resources/images/schemacrawler_logo.png
+    iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
   sdkman:
     active: ALWAYS
     continueOnError: false
