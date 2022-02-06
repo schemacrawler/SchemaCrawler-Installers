@@ -47,6 +47,7 @@ packagers:
     continueOnError: false
     downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
     packageName: schemacrawler
+    packageVersion: "16.16.11"
     username: sualeh
     source: https://push.chocolatey.org/
     title: SchemaCrawler
