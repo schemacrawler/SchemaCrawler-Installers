@@ -17,7 +17,6 @@ project:
     - Sualeh Fatehi
   vendor: SchemaCrawler - Sualeh Fatehi
   license: EPL-1.0
-  licenseUrl: https://www.schemacrawler.com/license.html
   java:
     groupId: us.fatehi
     artifactId: schemacrawler
@@ -46,8 +45,6 @@ packagers:
     active: ALWAYS
     continueOnError: false
     downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
-    packageName: schemacrawler
-    packageVersion: "16.16.11"
     username: sualeh
     source: https://push.chocolatey.org/
     title: SchemaCrawler
