@@ -24,16 +24,16 @@ jobs:
       run: |
         # Obtain distribution
         wget -N -q \
-        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.11/schemacrawler-16.16.11-bin.zip
-        test -f schemacrawler-16.16.11-bin.zip && echo "Downloaded binary distribution"
+        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.12/schemacrawler-16.16.12-bin.zip
+        test -f schemacrawler-16.16.12-bin.zip && echo "Downloaded binary distribution"
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        unzip schemacrawler-16.16.11-bin.zip
+        unzip schemacrawler-16.16.12-bin.zip
         cp \
-          ./schemacrawler-16.16.11-bin/lib/* \
+          ./schemacrawler-16.16.12-bin/lib/* \
           ./schemacrawler-lib/
         cp \
-          ./schemacrawler-16.16.11-bin/logos/* \
+          ./schemacrawler-16.16.12-bin/logos/* \
           ./schemacrawler-icons/
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
@@ -85,11 +85,11 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
-          ./schemacrawler-installers/schemacrawler_16.16.11-1_amd64.deb \
-          ./schemacrawler-installers/schemacrawler-16.16.11.deb
+          ./schemacrawler-installers/schemacrawler_16.16.12-1_amd64.deb \
+          ./schemacrawler-installers/schemacrawler-16.16.12.deb
         sha256sum -b \
-          ./schemacrawler-installers/schemacrawler-16.16.11.deb \
-          > ./schemacrawler-installers/schemacrawler-16.16.11.deb.SHA256
+          ./schemacrawler-installers/schemacrawler-16.16.12.deb \
+          > ./schemacrawler-installers/schemacrawler-16.16.12.deb.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Linux Installer - SAVE INSTALLER
@@ -132,8 +132,8 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
-          ./schemacrawler-installers/SchemaCrawler-16.16.11.msi \
-          > ./schemacrawler-installers/SchemaCrawler-16.16.11.msi.SHA256
+          ./schemacrawler-installers/SchemaCrawler-16.16.12.msi \
+          > ./schemacrawler-installers/SchemaCrawler-16.16.12.msi.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Windows Installer - SAVE INSTALLER
@@ -173,10 +173,10 @@ jobs:
       with:
         name: all-installers
         path: |
-          schemacrawler-16.16.11.deb
-          schemacrawler-16.16.11.deb.SHA256
-          SchemaCrawler-16.16.11.msi
-          SchemaCrawler-16.16.11.msi.SHA256
+          schemacrawler-16.16.12.deb
+          schemacrawler-16.16.12.deb.SHA256
+          SchemaCrawler-16.16.12.msi
+          SchemaCrawler-16.16.12.msi.SHA256
           schemacrawler.json
         retention-days: 1
     - id: create-release
@@ -192,10 +192,10 @@ jobs:
           See the change history at https://www.schemacrawler.com/changes-report.html
         generate_release_notes: true
         files: |
-          schemacrawler-16.16.11.deb
-          schemacrawler-16.16.11.deb.SHA256
-          SchemaCrawler-16.16.11.msi
-          SchemaCrawler-16.16.11.msi.SHA256
+          schemacrawler-16.16.12.deb
+          schemacrawler-16.16.12.deb.SHA256
+          SchemaCrawler-16.16.12.msi
+          SchemaCrawler-16.16.12.msi.SHA256
 
 ### PUBLISH WINGET PACKAGE
   publish-winget-pkg:
@@ -214,8 +214,8 @@ jobs:
         # Submit package to Windows Package Manager Community Repository
         iwr https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
         .\wingetcreate.exe update schemacrawler.schemacrawler `
-        --version 16.16.11 `
+        --version 16.16.12 `
         --urls `
-        https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v16.16.11/SchemaCrawler-16.16.11.msi `
+        https://github.com/schemacrawler/SchemaCrawler-Installers/releases/download/v16.16.12/SchemaCrawler-16.16.12.msi `
         --submit `
         --token ${{ secrets.WINGET_PUSH_TOKEN }}
