@@ -41,7 +41,7 @@ jobs:
       uses: jreleaser/release-action@v2
       with:
         version: early-access
-        arguments: "full-release --dry-run -g"
+        arguments: "full-release -g"
     - id: persist-jreleaser-out
       name: JReleaser release output
       uses: actions/upload-artifact@v2
