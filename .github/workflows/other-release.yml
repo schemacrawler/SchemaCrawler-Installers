@@ -35,7 +35,7 @@ jobs:
       shell: pwsh
       run: |
         # Download binary distribution
-        Invoke-WebRequest -OutFile schemacrawler-16.16.17-bin.zip -Uri  https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.17/schemacrawler-16.16.17-bin.zip
+        Invoke-WebRequest -OutFile schemacrawler-16.16.18-bin.zip -Uri  https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.16.18/schemacrawler-16.16.18-bin.zip
     - id: jreleaser
       name: Run JReleaser
       uses: jreleaser/release-action@v2
