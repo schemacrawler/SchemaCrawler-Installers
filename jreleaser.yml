@@ -12,7 +12,9 @@ project:
     standard scripting language against your database. You can find potential schema
     design issues with lint.
   copyright: Copyright (c) 2000-2022, Sualeh Fatehi.
-  website: https://www.schemacrawler.com/
+  inceptionYear: 2000
+  links: 
+    homepage: https://www.schemacrawler.com/
   authors:
     - Sualeh Fatehi
   vendor: SchemaCrawler - Sualeh Fatehi
@@ -26,8 +28,6 @@ project:
     - database
     - java
     - cli
-  extraProperties:
-    inceptionYear: 2000
   versionPattern: SEMVER
 release:
   github:
@@ -64,4 +64,4 @@ distributions:
       unixExtension: sh
       windowsExtension: cmd
     artifacts:
-      - path: {{distributionName}}-{{projectVersion}}-bin.zip
+      - path: ./{{distributionName}}-{{projectVersion}}-bin.zip
