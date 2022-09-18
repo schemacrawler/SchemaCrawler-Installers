@@ -187,7 +187,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: ${{ github.ref_name }}
         draft: false
-        prerelease: true
+        prerelease: false
         body: |
           See the change history at https://www.schemacrawler.com/changes-report.html
         generate_release_notes: true
