@@ -2,7 +2,7 @@
 
 # SchemaCrawler Multi-platform Installers
 
-> **Please see the [SchemaCrawler website](https://www.schemacrawler.com/) for more details.**
+> **Note**: Please see the [SchemaCrawler website](https://www.schemacrawler.com/) for more details.
 
 ## About
 
