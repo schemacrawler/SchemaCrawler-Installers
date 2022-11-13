@@ -13,7 +13,7 @@ project:
     design issues with lint.
   copyright: Copyright (c) 2000-2022, Sualeh Fatehi.
   inceptionYear: 2000
-  links: 
+  links:
     homepage: https://www.schemacrawler.com/
   authors:
     - Sualeh Fatehi
@@ -37,8 +37,9 @@ release:
     name: SchemaCrawler
     username: schemacrawler
 announce:
-  twitter:
+  mastodon:
     active: ALWAYS
+    host: https://fosstodon.org
     status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}} #OpenSource #Database #DevOps #DevOpsTools #Java"
 packagers:
   chocolatey:
@@ -59,7 +60,7 @@ distributions:
   schemacrawler:
     active: ALWAYS
     type: JAVA_BINARY
-    executable: 
+    executable:
       name: schemacrawler
       unixExtension: sh
       windowsExtension: cmd
