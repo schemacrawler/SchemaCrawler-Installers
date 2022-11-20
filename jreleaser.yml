@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.18.2
+  version: 16.19.1
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -38,7 +38,7 @@ release:
     username: schemacrawler
 announce:
   mastodon:
-    active: ALWAYS
+    active: NEVER
     host: https://fosstodon.org
     status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}} #OpenSource #Database #DevOps #DevOpsTools #Java"
 packagers:
