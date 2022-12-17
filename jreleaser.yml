@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.19.4
+  version: 16.19.5
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -11,7 +11,7 @@ project:
     SchemaCrawler also generates schema diagrams. You can execute scripts in any
     standard scripting language against your database. You can find potential schema
     design issues with lint.
-  copyright: Copyright (c) 2000-2022, Sualeh Fatehi.
+  copyright: Copyright (c) 2000-2023, Sualeh Fatehi.
   inceptionYear: 2000
   links:
     homepage: https://www.schemacrawler.com/
