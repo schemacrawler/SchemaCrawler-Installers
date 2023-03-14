@@ -40,13 +40,13 @@ release:
 packagers:
   chocolatey:
     active: ALWAYS
-    continueOnError: false
+    continueOnError: true
     username: sualeh
     title: SchemaCrawler
     iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
   sdkman:
     active: ALWAYS
-    continueOnError: false
+    continueOnError: true
     candidate: schemacrawler
     command: MAJOR
     releaseNotesUrl: https://www.schemacrawler.com/changes-report.html
