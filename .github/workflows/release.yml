@@ -41,17 +41,17 @@ jobs:
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
       name: Upload distribution - lib/ folder
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        path: ./schemacrawler-lib/
         name: schemacrawler-lib
+        path: ./schemacrawler-lib/
         retention-days: 1
     - id: upload-distrib-icons
       name: Upload distribution - icons/ folder
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        path: ./schemacrawler-icons/
         name: schemacrawler-icons
+        path: ./schemacrawler-icons/
         retention-days: 1
 
 
@@ -65,18 +65,18 @@ jobs:
 # Build Linux Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - id: setup-jdk
       name: Setup JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
-        distribution: zulu
+        distribution: temurin
         java-version: 17
 
 # Build Linux Installer - BUILD INSTALLER
     - id: download-distrib-lib
       name: Download distribution
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
     - id: build-installer
       name: Build installer
       shell: bash
@@ -95,10 +95,10 @@ jobs:
 # Build Linux Installer - SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        path: ./schemacrawler-installers/*
         name: linux-installer
+        path: ./schemacrawler-installers/*
         retention-days: 1
 
 
@@ -112,18 +112,18 @@ jobs:
 # Build Windows Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - id: setup-jdk
       name: Setup JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
-        distribution: zulu
+        distribution: temurin
         java-version: 17
 
 # Build Windows Installer - BUILD INSTALLER
     - id: download-distrib-lib
       name: Download distribution
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
     - id: build-installer
       name: Build installer
       shell: bash
@@ -139,10 +139,10 @@ jobs:
 # Build Windows Installer - SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        path: ./schemacrawler-installers/*
         name: windows-installer
+        path: ./schemacrawler-installers/*
         retention-days: 1
 
 
@@ -169,7 +169,7 @@ jobs:
 # Create Release - CREATE GITHUB RELEASE AND ADD ASSETS
     - id: upload-artifacts
       name: Upload installers
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: all-installers
         path: |

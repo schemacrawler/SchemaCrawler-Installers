@@ -24,6 +24,7 @@ project:
     artifactId: schemacrawler
     version: 8
     mainClass: schemacrawler.Main
+  stereotype: CLI
   tags:
     - database
     - java
@@ -34,30 +35,23 @@ release:
     skipRelease: true
     skipTag: true
     owner: schemacrawler
-    name: SchemaCrawler
+    name: SchemaCrawler-Installers
     username: schemacrawler
-announce:
-  mastodon:
-    active: NEVER
-    host: https://fosstodon.org
-    status: "🚀 SchemaCrawler {{projectVersion}} has been released! https://github.com/schemacrawler/SchemaCrawler/releases/tag/v{{projectVersion}} #OpenSource #Database #DevOps #DevOpsTools #Java"
 packagers:
   chocolatey:
     active: ALWAYS
     continueOnError: false
-    downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
     username: sualeh
     title: SchemaCrawler
     iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
   sdkman:
     active: ALWAYS
     continueOnError: false
-    downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
     candidate: schemacrawler
     command: MAJOR
     releaseNotesUrl: https://www.schemacrawler.com/changes-report.html
 distributions:
-  schemacrawler:
+  schemacrawler-java-binary:
     active: ALWAYS
     type: JAVA_BINARY
     executable:
@@ -65,4 +59,4 @@ distributions:
       unixExtension: sh
       windowsExtension: cmd
     artifacts:
-      - path: ./{{distributionName}}-{{projectVersion}}-bin.zip
+      - path: ./schemacrawler-{{projectVersion}}-bin.zip
