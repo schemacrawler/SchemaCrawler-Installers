@@ -32,8 +32,6 @@ project:
   versionPattern: SEMVER
 release:
   github:
-    skipRelease: true
-    skipTag: true
     owner: schemacrawler
     name: SchemaCrawler-Installers
     username: schemacrawler
