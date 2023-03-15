@@ -1,4 +1,4 @@
-name: Build Installers
+name: Build and Publish Installers
 
 on:
   workflow_dispatch:
@@ -156,17 +156,17 @@ jobs:
 # Checkout code
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
 # Create Release - DOWNLOAD INSTALLERS
     - id: download-linux-installer
       name: Download Linux installer
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: linux-installer
     - id: download-windows-installer
       name: Download Windows installer
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: windows-installer
     - id: download-distribution
@@ -195,7 +195,7 @@ jobs:
         arguments: "full-release -g"
     - id: persist-jreleaser-out
       name: JReleaser release output
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: windows-jreleaser-out
