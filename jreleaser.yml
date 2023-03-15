@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.19.7
+  version: 16.19.7-D
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -15,6 +15,8 @@ project:
   inceptionYear: 2000
   links:
     homepage: https://www.schemacrawler.com/
+    bugTracker: https://github.com/schemacrawler/SchemaCrawler/issues
+    vcsBrowser: https://github.com/schemacrawler/SchemaCrawler
   authors:
     - Sualeh Fatehi
   vendor: SchemaCrawler - Sualeh Fatehi
@@ -39,6 +41,10 @@ release:
     owner: schemacrawler
     name: SchemaCrawler-Installers
     username: schemacrawler
+    overwrite: true
+    commitAuthor:
+      name: 'Sualeh Fatehi'
+      email: sualeh@hotmail.com
 distributions:
   schemacrawler-java-binary:
     active: ALWAYS
@@ -48,7 +54,7 @@ distributions:
       unixExtension: sh
       windowsExtension: cmd
     artifacts:
-      - path: ./schemacrawler-{{projectVersion}}-bin.zip
+      - path: './schemacrawler-{{projectVersion}}-bin.zip'
     sdkman:
       active: ALWAYS
       continueOnError: true
@@ -60,8 +66,8 @@ distributions:
     active: ALWAYS
     type: NATIVE_PACKAGE
     artifacts:
-      - path: ./{{projectName}}-{{projectVersion}}.msi
-        platform: windows
+      - path: './{{projectName}}-{{projectVersion}}.msi'
+        platform: 'windows-x86_64'
     chocolatey:
       active: ALWAYS
       continueOnError: true
@@ -69,3 +75,23 @@ distributions:
       title: SchemaCrawler
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
+    winget:
+      active: ALWAYS
+      continueOnError: true
+      package:
+        identifier: schemacrawler.schemacrawler
+        name: SchemaCrawler
+      repository:
+        active: ALWAYS
+        name: microsoft/winget-pkgs
+        commitMessage: 'SchemaCrawler {{tagName}}'
+      installer:
+        command: schemacrawler
+      commitAuthor:
+        name: 'Sualeh Fatehi'
+        email: sualeh@hotmail.com
+  schemacrawler-linux-installer:
+    active: ALWAYS
+    type: NATIVE_PACKAGE
+    artifacts:
+      - path: './schemacrawler-{{projectVersion}}.deb'
