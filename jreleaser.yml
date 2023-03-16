@@ -57,14 +57,14 @@ distributions:
       - path: './schemacrawler-{{projectVersion}}-bin.zip'
     chocolatey:
       active: ALWAYS
-      continueOnError: true
+      continueOnError: false
       username: sualeh
       title: SchemaCrawler
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
     sdkman:
       active: ALWAYS
-      continueOnError: true
+      continueOnError: false
       candidate: schemacrawler
       command: MAJOR
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
@@ -77,7 +77,7 @@ distributions:
         platform: 'windows-x86_64'
     winget:
       active: ALWAYS
-      continueOnError: true
+      continueOnError: false
       package:
         identifier: schemacrawler.schemacrawler
         name: SchemaCrawler
