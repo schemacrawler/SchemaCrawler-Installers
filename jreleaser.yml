@@ -55,6 +55,13 @@ distributions:
       windowsExtension: cmd
     artifacts:
       - path: './schemacrawler-{{projectVersion}}-bin.zip'
+    chocolatey:
+      active: ALWAYS
+      continueOnError: true
+      username: sualeh
+      title: SchemaCrawler
+      downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
+      iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
     sdkman:
       active: ALWAYS
       continueOnError: true
@@ -68,13 +75,6 @@ distributions:
     artifacts:
       - path: './{{projectName}}-{{projectVersion}}.msi'
         platform: 'windows-x86_64'
-    chocolatey:
-      active: ALWAYS
-      continueOnError: true
-      username: sualeh
-      title: SchemaCrawler
-      downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
-      iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
     winget:
       active: ALWAYS
       continueOnError: true
@@ -83,13 +83,13 @@ distributions:
         name: SchemaCrawler
       repository:
         active: ALWAYS
-        name: microsoft/winget-pkgs
+        name: SchemaCrawler-Installers
         commitMessage: 'SchemaCrawler {{tagName}}'
       installer:
         command: schemacrawler
       commitAuthor:
         name: 'Sualeh Fatehi'
-        email: sualeh@hotmail.com
+        email: 'sualeh@hotmail.com'
   schemacrawler-linux-installer:
     active: ALWAYS
     type: NATIVE_PACKAGE
