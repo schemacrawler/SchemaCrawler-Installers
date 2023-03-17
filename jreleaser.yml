@@ -42,6 +42,7 @@ release:
     name: SchemaCrawler-Installers
     username: schemacrawler
     overwrite: true
+    releaseName: '{{tagName}}'
     commitAuthor:
       name: 'Sualeh Fatehi'
       email: sualeh@hotmail.com
@@ -56,14 +57,14 @@ distributions:
     artifacts:
       - path: './schemacrawler-{{projectVersion}}-bin.zip'
     chocolatey:
-      active: ALWAYS
+      active: NEVER
       continueOnError: false
       username: sualeh
       title: SchemaCrawler
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
     sdkman:
-      active: ALWAYS
+      active: NEVER
       continueOnError: false
       candidate: schemacrawler
       command: MAJOR
