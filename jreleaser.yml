@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.19.7
+  version: 16.19.8
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -76,21 +76,6 @@ distributions:
     artifacts:
       - path: './{{projectName}}-{{projectVersion}}.msi'
         platform: 'windows-x86_64'
-    winget:
-      active: ALWAYS
-      continueOnError: false
-      package:
-        identifier: schemacrawler.schemacrawler
-        name: SchemaCrawler
-      repository:
-        active: ALWAYS
-        name: SchemaCrawler-Installers
-        commitMessage: 'SchemaCrawler {{tagName}}'
-      installer:
-        command: schemacrawler
-      commitAuthor:
-        name: 'Sualeh Fatehi'
-        email: 'sualeh@hotmail.com'
   schemacrawler-linux-installer:
     active: ALWAYS
     type: NATIVE_PACKAGE
