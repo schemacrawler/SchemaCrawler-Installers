@@ -57,7 +57,7 @@ distributions:
     artifacts:
       - path: './schemacrawler-{{projectVersion}}-bin.zip'
     chocolatey:
-      active: NEVER
+      active: ALWAYS
       continueOnError: false
       username: sualeh
       title: SchemaCrawler
