@@ -57,14 +57,14 @@ distributions:
     artifacts:
       - path: './schemacrawler-{{projectVersion}}-bin.zip'
     chocolatey:
-      active: ALWAYS
+      active: NEVER
       continueOnError: false
       username: sualeh
       title: SchemaCrawler
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
     sdkman:
-      active: NEVER
+      active: ALWAYS
       continueOnError: false
       candidate: schemacrawler
       command: MAJOR
