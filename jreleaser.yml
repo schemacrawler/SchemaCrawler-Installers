@@ -47,7 +47,7 @@ release:
       name: 'Sualeh Fatehi'
       email: sualeh@hotmail.com
 distributions:
-  schemacrawler-java-binary:
+  schemacrawler:
     active: ALWAYS
     type: JAVA_BINARY
     executable:
