@@ -41,14 +41,14 @@ jobs:
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
       name: Upload distribution - lib/ folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: schemacrawler-lib
         path: ./schemacrawler-lib/
         retention-days: 1
     - id: upload-distrib-icons
       name: Upload distribution - icons/ folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: schemacrawler-icons
         path: ./schemacrawler-icons/
@@ -65,10 +65,10 @@ jobs:
 # Build Linux Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - id: setup-jdk
       name: Setup JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
@@ -76,7 +76,7 @@ jobs:
 # Build Linux Installer - BUILD INSTALLER
     - id: download-distrib-lib
       name: Download distribution
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
     - id: build-installer
       name: Build installer
       shell: bash
@@ -95,7 +95,7 @@ jobs:
 # Build Linux Installer - SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-installer
         path: ./schemacrawler-installers/*
@@ -112,10 +112,10 @@ jobs:
 # Build Windows Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - id: setup-jdk
       name: Setup JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
@@ -123,7 +123,7 @@ jobs:
 # Build Windows Installer - BUILD INSTALLER
     - id: download-distrib-lib
       name: Download distribution
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
     - id: build-installer
       name: Build installer
       shell: bash
@@ -139,7 +139,7 @@ jobs:
 # Build Windows Installer - SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-installer
         path: ./schemacrawler-installers/*
@@ -156,17 +156,17 @@ jobs:
 # Checkout code
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
 # Create Release - DOWNLOAD INSTALLERS
     - id: download-linux-installer
       name: Download Linux installer
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: linux-installer
     - id: download-windows-installer
       name: Download Windows installer
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: windows-installer
     - id: download-distribution
@@ -191,7 +191,7 @@ jobs:
         arguments: "full-release -g"
     - id: persist-jreleaser-out
       name: JReleaser release output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: windows-jreleaser-out
