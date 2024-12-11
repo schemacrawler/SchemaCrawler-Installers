@@ -29,10 +29,10 @@ jobs:
 # BUILD FOR DISTRIBUTION
     - id: checkout-schemacrawler-ai
       name: Checkout SchemaCrawler-AI
-        uses: actions/checkout@v4
-        with:
-          repository: schemacrawler/SchemaCrawler-AI
-          path: SchemaCrawler-AI
+      uses: actions/checkout@v4
+      with:
+        repository: schemacrawler/SchemaCrawler-AI
+        path: SchemaCrawler-AI
     - id: build-schemacrawler-ai
       name: Build SchemaCrawler-AI for distribution
       shell: bash
