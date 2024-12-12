@@ -44,8 +44,9 @@ jobs:
           --batch-mode \
           clean install
         cd ..
-        cp ./SchemaCrawler-AI/target/lib ./extra-lib
+        cp -r ./SchemaCrawler-AI/target/lib ./extra-lib
         # DEBUG
+        pwd
         ls -l ./extra-lib
 
 # BUILD AND PUBLISH DOCKER IMAGE
