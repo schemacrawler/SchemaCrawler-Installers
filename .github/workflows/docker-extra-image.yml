@@ -42,10 +42,34 @@ jobs:
           --batch-mode \
           clean install
         cd ..
-        cp -r ./SchemaCrawler-AI/target/_extra-lib ./extra-lib
+        cp -r ./SchemaCrawler-AI/target/_aichat/lib ./extra-lib
         # DEBUG
         pwd
         ls -l ./extra-lib
+    - id: checkout-schemacrawler-database-plugins
+      name: Checkout SchemaCrawler-Database-Plugins
+      uses: actions/checkout@v4
+      with:
+        repository: schemacrawler/SchemaCrawler-Database-Plugins
+        path: SchemaCrawler-Database-Plugins
+    - id: build-schemacrawler-database-plugins
+      name: Build SchemaCrawler-Database-Plugins for distribution
+      shell: bash
+      run: |
+        # Build SchemaCrawler-Database-Plugins
+        cd SchemaCrawler-Database-Plugins
+        mvn \
+          --no-transfer-progress \
+          --batch-mode \
+          clean install
+        cd ..
+        cp -r \
+        ./SchemaCrawler-Database-Plugins/schemacrawler-database-plugins-distrib/target/_database-plugins-distrib/lib \
+        ./extra-lib
+        # DEBUG
+        pwd
+        ls -l ./extra-lib
+
 
 # BUILD AND PUBLISH DOCKER IMAGE
     - id: setup-qemu
