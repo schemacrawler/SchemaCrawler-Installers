@@ -42,7 +42,7 @@ jobs:
           --batch-mode \
           clean install
         cd ..
-        cp -r ./SchemaCrawler-AI/target/_aichat/lib ./extra-lib
+        cp -r ./SchemaCrawler-AI/schemacrawler-ai-distrib/target/_aichat/lib ./extra-lib
         # DEBUG
         pwd
         ls -l ./extra-lib
