@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 16.27.1
+  version: 16.27.2
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
