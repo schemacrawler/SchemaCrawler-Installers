@@ -36,16 +36,16 @@ jobs:
       run: |
         # Obtain distribution
         wget -N -q \
-        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.28.2/schemacrawler-16.28.2-bin.zip
-        test -f schemacrawler-16.28.2-bin.zip && echo "Downloaded binary distribution"
+        https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.28.3/schemacrawler-16.28.3-bin.zip
+        test -f schemacrawler-16.28.3-bin.zip && echo "Downloaded binary distribution"
         mkdir ./schemacrawler-lib
         mkdir ./schemacrawler-icons
-        unzip schemacrawler-16.28.2-bin.zip
+        unzip schemacrawler-16.28.3-bin.zip
         cp \
-          ./schemacrawler-16.28.2-bin/lib/* \
+          ./schemacrawler-16.28.3-bin/lib/* \
           ./schemacrawler-lib/
         cp \
-          ./schemacrawler-16.28.2-bin/logos/* \
+          ./schemacrawler-16.28.3-bin/logos/* \
           ./schemacrawler-icons/
         ls -lR ./schemacrawler-lib/
         ls -lR ./schemacrawler-icons/
@@ -97,11 +97,11 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
-          ./schemacrawler-installers/schemacrawler_16.28.2-1_amd64.deb \
-          ./schemacrawler-installers/schemacrawler-16.28.2.deb
+          ./schemacrawler-installers/schemacrawler_16.28.3-1_amd64.deb \
+          ./schemacrawler-installers/schemacrawler-16.28.3.deb
         sha256sum -b \
-          ./schemacrawler-installers/schemacrawler-16.28.2.deb \
-          > ./schemacrawler-installers/schemacrawler-16.28.2.deb.SHA256
+          ./schemacrawler-installers/schemacrawler-16.28.3.deb \
+          > ./schemacrawler-installers/schemacrawler-16.28.3.deb.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Linux Installer - SAVE INSTALLER
@@ -144,8 +144,8 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
-          ./schemacrawler-installers/SchemaCrawler-16.28.2.msi \
-          > ./schemacrawler-installers/SchemaCrawler-16.28.2.msi.SHA256
+          ./schemacrawler-installers/SchemaCrawler-16.28.3.msi \
+          > ./schemacrawler-installers/SchemaCrawler-16.28.3.msi.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Windows Installer - SAVE INSTALLER
@@ -186,7 +186,7 @@ jobs:
       shell: pwsh
       run: |
         # Download binary distribution
-        Invoke-WebRequest -OutFile schemacrawler-16.28.2-bin.zip -Uri  https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.28.2/schemacrawler-16.28.2-bin.zip
+        Invoke-WebRequest -OutFile schemacrawler-16.28.3-bin.zip -Uri  https://github.com/schemacrawler/SchemaCrawler/releases/download/v16.28.3/schemacrawler-16.28.3-bin.zip
 
 # Release and Publish with JReleaser
     - id: jreleaser
