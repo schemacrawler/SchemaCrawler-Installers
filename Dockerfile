@@ -1,7 +1,7 @@
 # ========================================================================
 # SchemaCrawler
 # http://www.schemacrawler.com
-# Copyright (c) 2000-2025, Sualeh Fatehi <sualeh@hotmail.com>.
+# Copyright (c) 2000-2026, Sualeh Fatehi <sualeh@hotmail.com>.
 # All rights reserved.
 # ------------------------------------------------------------------------
 #
@@ -24,7 +24,7 @@
 #
 # ========================================================================
 
-FROM schemacrawler/schemacrawler:v17.1.6
+FROM schemacrawler/schemacrawler:v17.1.7
 
 # Copy SchemaCrawler extra distribution jars from the build directory
 COPY \
