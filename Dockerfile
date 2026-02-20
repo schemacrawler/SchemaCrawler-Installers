@@ -24,7 +24,7 @@
 #
 # ========================================================================
 
-FROM schemacrawler/schemacrawler:v17.6.2
+FROM schemacrawler/schemacrawler:v17.6.3
 
 # Copy SchemaCrawler extra distribution jars from the build directory
 COPY \
