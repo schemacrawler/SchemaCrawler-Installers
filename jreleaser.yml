@@ -70,6 +70,13 @@ distributions:
       command: MAJOR
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       releaseNotesUrl: https://www.schemacrawler.com/changes-report.html
+    brew:
+      active: ALWAYS
+      continueOnError: false
+      repository:
+        owner: schemacrawler
+        name: homebrew-tap
+        commitMessage: 'schemacrawler {{tagName}}'
   schemacrawler-windows-installer:
     active: ALWAYS
     type: NATIVE_PACKAGE
