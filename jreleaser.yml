@@ -24,7 +24,7 @@ project:
   java:
     groupId: us.fatehi
     artifactId: schemacrawler
-    version: 8
+    version: 17
     mainClass: schemacrawler.Main
   stereotype: CLI
   tags:

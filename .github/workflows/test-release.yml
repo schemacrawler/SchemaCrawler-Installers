@@ -6,6 +6,7 @@ on:
       version:
         description: "Release version to test (without leading v, e.g. 1.2.3)"
         required: true
+        default: 17.7.0
 
 jobs:
   test-brew:
@@ -24,7 +25,7 @@ jobs:
           brew update
           brew tap SchemaCrawler/homebrew-tap
 
-      - name: Install via Homebrew
+      - name: Install SchemaCrawler with Homebrew
         shell: bash
         run: |
           brew install schemacrawler
@@ -54,7 +55,7 @@ jobs:
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           sdk version
 
-      - name: Install candidate version
+      - name: Install SchemaCrawler with SDKMAN
         shell: bash
         run: |
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
