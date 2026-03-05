@@ -21,11 +21,12 @@ project:
     - Sualeh Fatehi
   vendor: SchemaCrawler - Sualeh Fatehi
   license: EPL-1.0
-  java:
-    groupId: us.fatehi
-    artifactId: schemacrawler
-    version: 17
-    mainClass: schemacrawler.Main
+  languages:
+    java:
+      groupId: us.fatehi
+      artifactId: schemacrawler
+      version: 17
+      mainClass: schemacrawler.Main
   stereotype: CLI
   tags:
     - database
@@ -77,7 +78,7 @@ distributions:
       formulaName: schemacrawler
       cask:
         enabled: true
-        app: schemacrawler
+        appName: schemacrawler
         displayName: SchemaCrawler
         pkgName: schemacrawler-{{projectVersion}}.pkg
       commitAuthor:
