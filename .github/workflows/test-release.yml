@@ -2,11 +2,6 @@ name: Test Packaged Releases
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: "Release version to test (without leading v, e.g. 1.2.3)"
-        required: true
-        default: 17.7.0
 
 jobs:
   test-brew:
@@ -24,22 +19,22 @@ jobs:
         run: |
           # Install Homebrew
           brew update
+          brew -v
           # Set up SchemaCrawler tap
           brew tap SchemaCrawler/homebrew-tap
-          echo '$ brew search schemacrawler'
-          brew search schemacrawler
           echo '$ brew info schemacrawler'
-          brew info schemacrawler
+          brew info --cask schemacrawler
 
       - name: Install SchemaCrawler with Homebrew
         shell: bash
         run: |
           # Install SchemaCrawler as a cask
-          brew install --cask schemacrawler          
+          brew install --cask schemacrawler
 
       - name: Smoke test command
         run: |
-          schemacrawler --version
+          # Check that SchemaCrawler is installed
+          schemacrawler.sh --version
 
   test-sdkman:
     name: Test SDKMAN candidate
@@ -54,22 +49,27 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Install SDKMAN (CI mode)
+      - name: Set up SDKMAN
         shell: bash
         run: |
+          # Install SDKMAN
           curl -s "https://get.sdkman.io?ci=true" | bash
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           sdk version
+          # Check for current version of SchemaCrawler
+          echo '$ sdk current schemacrawler'
+          sdk current schemacrawler
 
       - name: Install SchemaCrawler with SDKMAN
         shell: bash
         run: |
+          # Install SchemaCrawler
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
-          sdk install schemacrawler ${{ github.event.inputs.version }}
-          sdk current schemacrawler
+          sdk install schemacrawler
 
       - name: Smoke test command
         shell: bash
         run: |
+          # Check that SchemaCrawler is installed
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           schemacrawler --version
