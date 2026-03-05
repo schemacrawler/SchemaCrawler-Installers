@@ -76,11 +76,6 @@ distributions:
       continueOnError: true
       multiPlatform: true
       formulaName: schemacrawler
-      cask:
-        enabled: true
-        appName: schemacrawler
-        displayName: SchemaCrawler
-        pkgName: schemacrawler-{{projectVersion}}.pkg
       commitAuthor:
         name: 'Sualeh Fatehi'
         email: sualeh@hotmail.com      
