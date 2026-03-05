@@ -33,12 +33,17 @@ jobs:
 
   test-sdkman:
     name: Test SDKMAN candidate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     env:
       SDKMAN_DIR: ${{ github.workspace }}/.sdkman
 
     steps:
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
       - name: Set up SDKMAN
         shell: bash
         run: |
