@@ -58,25 +58,35 @@ distributions:
       - path: './schemacrawler-{{projectVersion}}-bin.zip'
     chocolatey:
       active: ALWAYS
-      continueOnError: false
+      continueOnError: true
       username: sualeh
       title: SchemaCrawler
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       iconUrl: https://www.schemacrawler.com/images/schemacrawler_logo.png
     sdkman:
       active: ALWAYS
-      continueOnError: false
+      continueOnError: true
       candidate: schemacrawler
       command: MAJOR
       downloadUrl:  https://github.com/schemacrawler/SchemaCrawler/releases/download/v{{projectVersion}}/schemacrawler-{{projectVersion}}-bin.zip
       releaseNotesUrl: https://www.schemacrawler.com/changes-report.html
     brew:
       active: ALWAYS
-      continueOnError: false
+      continueOnError: true
+      multiPlatform: true
+      formulaName: schemacrawler
+      cask:
+        enabled: true
+        app: schemacrawler
+        displayName: SchemaCrawler
+        pkgName: schemacrawler-{{projectVersion}}.pkg
+      commitAuthor:
+        name: 'Sualeh Fatehi'
+        email: sualeh@hotmail.com      
       repository:
-        owner: schemacrawler
+        owner: SchemaCrawler
         name: homebrew-tap
-        commitMessage: 'schemacrawler {{tagName}}'
+        commitMessage: 'SchemaCrawler {{tagName}}'
   schemacrawler-windows-installer:
     active: ALWAYS
     type: NATIVE_PACKAGE

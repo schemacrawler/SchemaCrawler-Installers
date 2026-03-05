@@ -22,14 +22,20 @@ jobs:
       - name: Set up Homebrew
         shell: bash
         run: |
+          # Install Homebrew
           brew update
+          # Set up SchemaCrawler tap
           brew tap SchemaCrawler/homebrew-tap
+          echo '$ brew search schemacrawler'
+          brew search schemacrawler
+          echo '$ brew info schemacrawler'
+          brew info schemacrawler
 
       - name: Install SchemaCrawler with Homebrew
         shell: bash
         run: |
-          brew install schemacrawler
-          brew info schemacrawler
+          # Install SchemaCrawler as a cask
+          brew install --cask schemacrawler          
 
       - name: Smoke test command
         run: |
