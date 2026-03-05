@@ -34,7 +34,7 @@ jobs:
       - name: Smoke test command
         run: |
           # Check that SchemaCrawler is installed
-          schemacrawler.sh --version
+          schemacrawler --version
 
   test-sdkman:
     name: Test SDKMAN candidate
