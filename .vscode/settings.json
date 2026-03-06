@@ -1,6 +1,11 @@
 {
     "window.zoomLevel": 1,
     "cSpell.words": [
-        "schemacrawler"
+        "choco",
+        "jreleaser",
+        "schemacrawler",
+        "sdkman",
+        "temurin",
+        "winget"
     ]
 }
