@@ -125,7 +125,7 @@ jobs:
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
-          schemacrawler --version
+          schemacrawler.cmd --version
 
   test-chocolatey:
     name: Test Chocolatey package
