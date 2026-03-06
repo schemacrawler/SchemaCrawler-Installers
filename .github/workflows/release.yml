@@ -193,7 +193,7 @@ jobs:
       name: Publish to Winget
       uses: vedantmgoyal9/winget-releaser@main
       with:
-        identifier: SchemaCrawler.SchemaCrawler
+        identifier: schemacrawler.schemacrawler
         max-versions-to-keep: 0 # keep all versions
         token: ${{ secrets.WINGET_TOKEN }}
         release-notes-url: https://www.schemacrawler.com/changes-report.html
