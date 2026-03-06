@@ -91,14 +91,14 @@ jobs:
         shell: pwsh
         run: |
           # Install SchemaCrawler
-          . $PROFILE
+          $env:PATH += ";$env:USERPROFILE\scoop\shims"
           scoop install schemacrawler
 
       - name: Smoke test command
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
-          . $PROFILE
+          $env:PATH += ";$env:USERPROFILE\scoop\shims"
           schemacrawler --version
 
   test-winget:
