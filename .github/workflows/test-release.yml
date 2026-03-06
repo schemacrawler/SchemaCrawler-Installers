@@ -17,7 +17,7 @@ jobs:
           brew update
           brew -v
           # Set up SchemaCrawler tap
-          brew tap SchemaCrawler/homebrew-tap
+          brew tap schemacrawler/homebrew-tap
           echo '$ brew info schemacrawler'
           brew info --formula schemacrawler
 
