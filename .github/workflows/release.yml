@@ -188,16 +188,6 @@ jobs:
         # Download binary distribution
         Invoke-WebRequest -OutFile schemacrawler-17.6.3-bin.zip -Uri https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.6.3/schemacrawler-17.6.3-bin.zip
 
-# Create Release - WINGET RELEASE
-    - id: winget-release
-      name: Publish to Winget
-      uses: vedantmgoyal9/winget-releaser@main
-      with:
-        identifier: schemacrawler.schemacrawler
-        max-versions-to-keep: 0 # keep all versions
-        token: ${{ secrets.WINGET_TOKEN }}
-        release-notes-url: https://www.schemacrawler.com/changes-report.html
-
 # Create Release - JRELEASER RELEASES
     - id: jreleaser
       name: Run JReleaser
@@ -222,3 +212,13 @@ jobs:
           out/jreleaser/trace.log
           out/jreleaser/output.properties
         retention-days: 5
+
+# Create Release - WINGET RELEASE
+    - id: winget-release
+      name: Publish to Winget
+      uses: vedantmgoyal9/winget-releaser@main
+      with:
+        identifier: schemacrawler.schemacrawler
+        max-versions-to-keep: 0 # keep all versions
+        token: ${{ secrets.WINGET_TOKEN }}
+        release-notes-url: https://www.schemacrawler.com/changes-report.html
