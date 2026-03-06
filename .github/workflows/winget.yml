@@ -215,11 +215,29 @@ jobs:
         retention-days: 5
 
 # Create Release - WINGET RELEASE
+    - id: sync-winget-fork
+      name: Sync schemacrawler/winget-pkgs fork
+      shell: pwsh
+      env:
+        WINGET_PKGS_TOKEN: ${{ secrets.WINGET_PKGS_TOKEN }}
+      run: |
+        git config --global user.name "Sualeh Fatehi"
+        git config --global user.email "sualeh@hotmail.com"
+        git clone "https://x-access-token:${env:WINGET_PKGS_TOKEN}@github.com/schemacrawler/winget-pkgs.git"
+        Set-Location winget-pkgs
+        git remote add upstream https://github.com/microsoft/winget-pkgs.git
+        git fetch upstream
+        git checkout master
+        git merge --ff-only upstream/master
+        if ($LASTEXITCODE -ne 0) {
+          git merge upstream/master --no-edit
+        }
+        git push origin master
     - id: winget-release
       name: Publish to Winget
       uses: vedantmgoyal9/winget-releaser@main
       with:
         identifier: schemacrawler.schemacrawler
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.WINGET_PKGS_TOKEN }}
         release-tag: v17.7.0
         release-notes-url: https://www.schemacrawler.com/changes-report.html
