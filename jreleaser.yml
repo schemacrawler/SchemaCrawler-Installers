@@ -1,6 +1,6 @@
 project:
   name: SchemaCrawler
-  version: 17.6.3
+  version: 17.7.0
   description: Free database schema discovery and comprehension tool
   longDescription: >
     SchemaCrawler is a free database schema discovery and comprehension tool.
@@ -78,7 +78,7 @@ distributions:
       formulaName: schemacrawler
       commitAuthor:
         name: 'Sualeh Fatehi'
-        email: sualeh@hotmail.com      
+        email: sualeh@hotmail.com
       repository:
         owner: SchemaCrawler
         name: homebrew-tap
