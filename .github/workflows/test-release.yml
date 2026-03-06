@@ -9,7 +9,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Set up Homebrew
+      - id: brew-setup
+        name: Set up Homebrew
         shell: bash
         run: |
           # Install Homebrew
@@ -20,13 +21,15 @@ jobs:
           echo '$ brew info schemacrawler'
           brew info --formula schemacrawler
 
-      - name: Install SchemaCrawler with Homebrew
+      - id: brew-install
+        name: Install SchemaCrawler with Homebrew
         shell: bash
         run: |
           # Install SchemaCrawler
           brew install --formula schemacrawler
 
-      - name: Smoke test command
+      - id: brew-smoke-test
+        name: Smoke test command
         run: |
           # Check that SchemaCrawler is installed
           schemacrawler --version
@@ -39,12 +42,14 @@ jobs:
       SDKMAN_DIR: ${{ github.workspace }}/.sdkman
 
     steps:
-      - name: Set up Java
+      - id: sdkman-java-setup
+        name: Set up Java
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 25
-      - name: Set up SDKMAN
+      - id: sdkman-setup
+        name: Set up SDKMAN
         shell: bash
         run: |
           # Install SDKMAN
@@ -56,14 +61,16 @@ jobs:
           echo '$ sdk list schemacrawler'
           sdk list schemacrawler | cat
 
-      - name: Install SchemaCrawler with SDKMAN
+      - id: sdkman-install
+        name: Install SchemaCrawler with SDKMAN
         shell: bash
         run: |
           # Install SchemaCrawler
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           sdk install schemacrawler
 
-      - name: Smoke test command
+      - id: sdkman-smoke-test
+        name: Smoke test command
         shell: bash
         run: |
           # Check that SchemaCrawler is installed
@@ -75,7 +82,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Set up Scoop
+      - id: scoop-setup
+        name: Set up Scoop
         shell: pwsh
         run: |
           # Install Scoop
@@ -87,14 +95,16 @@ jobs:
           Write-Output '> scoop info schemacrawler'
           scoop info schemacrawler
 
-      - name: Install SchemaCrawler with Scoop
+      - id: scoop-install
+        name: Install SchemaCrawler with Scoop
         shell: pwsh
         run: |
           # Install SchemaCrawler
           $env:PATH += ";$env:USERPROFILE\scoop\shims"
           scoop install schemacrawler
 
-      - name: Smoke test command
+      - id: scoop-smoke-test
+        name: Smoke test command
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
@@ -106,7 +116,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Set up Winget
+      - id: winget-setup
+        name: Set up Winget
         shell: pwsh
         run: |
           # Check Winget version
@@ -115,13 +126,15 @@ jobs:
           Write-Output '> winget show SchemaCrawler.SchemaCrawler'
           winget show SchemaCrawler.SchemaCrawler --accept-source-agreements
 
-      - name: Install SchemaCrawler with Winget
+      - id: winget-install
+        name: Install SchemaCrawler with Winget
         shell: pwsh
         run: |
           # Install SchemaCrawler
           winget install SchemaCrawler.SchemaCrawler --accept-package-agreements --accept-source-agreements
 
-      - name: Smoke test command
+      - id: winget-smoke-test
+        name: Smoke test command
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
@@ -132,7 +145,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Set up Chocolatey
+      - id: chocolatey-setup
+        name: Set up Chocolatey
         shell: pwsh
         run: |
           # Check Chocolatey version
@@ -141,13 +155,15 @@ jobs:
           Write-Output '$ choco info schemacrawler'
           choco info schemacrawler
 
-      - name: Install SchemaCrawler with Chocolatey
+      - id: chocolatey-install
+        name: Install SchemaCrawler with Chocolatey
         shell: pwsh
         run: |
           # Install SchemaCrawler
           choco install schemacrawler -y
 
-      - name: Smoke test command
+      - id: chocolatey-smoke-test
+        name: Smoke test command
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
