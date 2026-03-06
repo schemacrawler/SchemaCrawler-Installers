@@ -2,10 +2,12 @@
     "window.zoomLevel": 1,
     "cSpell.words": [
         "choco",
+        "jpackage",
         "jreleaser",
         "schemacrawler",
         "sdkman",
         "temurin",
+        "vedantmgoyal",
         "winget"
     ]
 }

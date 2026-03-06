@@ -186,9 +186,19 @@ jobs:
       shell: pwsh
       run: |
         # Download binary distribution
-        Invoke-WebRequest -OutFile schemacrawler-17.6.3-bin.zip -Uri  https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.6.3/schemacrawler-17.6.3-bin.zip
+        Invoke-WebRequest -OutFile schemacrawler-17.6.3-bin.zip -Uri https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.6.3/schemacrawler-17.6.3-bin.zip
 
-# Release and Publish with JReleaser
+# Create Release - WINGET RELEASE
+    - id: winget-release
+      name: Publish to Winget
+      uses: vedantmgoyal9/winget-releaser@main
+      with:
+        identifier: SchemaCrawler.SchemaCrawler
+        max-versions-to-keep: 0 # keep all versions
+        token: ${{ secrets.WINGET_TOKEN }}
+        release-notes-url: https://www.schemacrawler.com/changes-report.html
+
+# Create Release - JRELEASER RELEASES
     - id: jreleaser
       name: Run JReleaser
       uses: jreleaser/release-action@v2
