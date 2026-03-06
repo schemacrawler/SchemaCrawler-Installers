@@ -73,7 +73,6 @@ jobs:
   test-scoop:
     name: Test Scoop package
     runs-on: windows-latest
-    permissions: {}
 
     steps:
       - name: Set up Scoop
@@ -83,27 +82,28 @@ jobs:
           Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
           Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
           scoop --version
-          # Add SchemaCrawler bucket
-          scoop bucket add schemacrawler https://github.com/schemacrawler/scoop-schemacrawler
-          Write-Output '$ scoop info schemacrawler'
+          scoop update
+          # Check for current version of SchemaCrawler
+          Write-Output '> scoop info schemacrawler'
           scoop info schemacrawler
 
       - name: Install SchemaCrawler with Scoop
         shell: pwsh
         run: |
           # Install SchemaCrawler
+          . $PROFILE
           scoop install schemacrawler
 
       - name: Smoke test command
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
+          . $PROFILE
           schemacrawler --version
 
   test-winget:
     name: Test Winget package
     runs-on: windows-latest
-    permissions: {}
 
     steps:
       - name: Set up Winget
@@ -111,7 +111,8 @@ jobs:
         run: |
           # Check Winget version
           winget --version
-          Write-Output '$ winget show SchemaCrawler.SchemaCrawler'
+          # Check for current version of SchemaCrawler
+          Write-Output '> winget show SchemaCrawler.SchemaCrawler'
           winget show SchemaCrawler.SchemaCrawler --accept-source-agreements
 
       - name: Install SchemaCrawler with Winget
@@ -129,7 +130,6 @@ jobs:
   test-chocolatey:
     name: Test Chocolatey package
     runs-on: windows-latest
-    permissions: {}
 
     steps:
       - name: Set up Chocolatey
@@ -137,6 +137,7 @@ jobs:
         run: |
           # Check Chocolatey version
           choco --version
+          # Check for current version of SchemaCrawler
           Write-Output '$ choco info schemacrawler'
           choco info schemacrawler
 
