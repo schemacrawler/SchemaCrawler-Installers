@@ -52,13 +52,15 @@
   "workbench.iconTheme": "material-icon-theme",
   "git.autoStash": true,
   "cSpell.words": [
-      "choco",
-      "jpackage",
-      "jreleaser",
-      "schemacrawler",
-      "sdkman",
-      "temurin",
-      "vedantmgoyal",
-      "winget"
+    "choco",
+    "Fatehi",
+    "jpackage",
+    "jreleaser",
+    "schemacrawler",
+    "sdkman",
+    "Sualeh",
+    "temurin",
+    "vedantmgoyal",
+    "winget"
   ]
 }
