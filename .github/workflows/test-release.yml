@@ -69,3 +69,85 @@ jobs:
           # Check that SchemaCrawler is installed
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           schemacrawler.sh --version
+
+  test-scoop:
+    name: Test Scoop package
+    runs-on: windows-latest
+    permissions: {}
+
+    steps:
+      - name: Set up Scoop
+        shell: pwsh
+        run: |
+          # Install Scoop
+          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+          Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+          scoop --version
+          # Add SchemaCrawler bucket
+          scoop bucket add schemacrawler https://github.com/schemacrawler/scoop-schemacrawler
+          Write-Output '$ scoop info schemacrawler'
+          scoop info schemacrawler
+
+      - name: Install SchemaCrawler with Scoop
+        shell: pwsh
+        run: |
+          # Install SchemaCrawler
+          scoop install schemacrawler
+
+      - name: Smoke test command
+        shell: pwsh
+        run: |
+          # Check that SchemaCrawler is installed
+          schemacrawler --version
+
+  test-winget:
+    name: Test Winget package
+    runs-on: windows-latest
+    permissions: {}
+
+    steps:
+      - name: Set up Winget
+        shell: pwsh
+        run: |
+          # Check Winget version
+          winget --version
+          Write-Output '$ winget show SchemaCrawler.SchemaCrawler'
+          winget show SchemaCrawler.SchemaCrawler --accept-source-agreements
+
+      - name: Install SchemaCrawler with Winget
+        shell: pwsh
+        run: |
+          # Install SchemaCrawler
+          winget install SchemaCrawler.SchemaCrawler --accept-package-agreements --accept-source-agreements
+
+      - name: Smoke test command
+        shell: pwsh
+        run: |
+          # Check that SchemaCrawler is installed
+          schemacrawler --version
+
+  test-chocolatey:
+    name: Test Chocolatey package
+    runs-on: windows-latest
+    permissions: {}
+
+    steps:
+      - name: Set up Chocolatey
+        shell: pwsh
+        run: |
+          # Check Chocolatey version
+          choco --version
+          Write-Output '$ choco info schemacrawler'
+          choco info schemacrawler
+
+      - name: Install SchemaCrawler with Chocolatey
+        shell: pwsh
+        run: |
+          # Install SchemaCrawler
+          choco install schemacrawler -y
+
+      - name: Smoke test command
+        shell: pwsh
+        run: |
+          # Check that SchemaCrawler is installed
+          schemacrawler --version
