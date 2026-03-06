@@ -221,4 +221,5 @@ jobs:
       with:
         identifier: schemacrawler.schemacrawler
         token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: v17.7.0
         release-notes-url: https://www.schemacrawler.com/changes-report.html

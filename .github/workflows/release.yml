@@ -14,6 +14,7 @@ jobs:
   download-schemacrawler-distribution:
     name: Download SchemaCrawler distribution
     runs-on: ubuntu-latest
+    if: false
     steps:
 
 # VALIDATE TAGS
@@ -216,7 +217,6 @@ jobs:
 # Create Release - WINGET RELEASE
     - id: winget-release
       name: Publish to Winget
-      if: false
       uses: vedantmgoyal9/winget-releaser@main
       with:
         identifier: schemacrawler.schemacrawler
