@@ -191,6 +191,7 @@ jobs:
 # Create Release - JRELEASER RELEASES
     - id: jreleaser
       name: Run JReleaser
+      if: false
       uses: jreleaser/release-action@v2
       env:
         JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -216,7 +217,6 @@ jobs:
 # Create Release - WINGET RELEASE
     - id: winget-release
       name: Publish to Winget
-      if: false
       uses: vedantmgoyal9/winget-releaser@main
       with:
         identifier: schemacrawler.schemacrawler
