@@ -219,5 +219,6 @@ jobs:
       uses: vedantmgoyal9/winget-releaser@main
       with:
         identifier: schemacrawler.schemacrawler
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.WINGET_PKGS_TOKEN }}
+        release-tag: v17.7.0
         release-notes-url: https://www.schemacrawler.com/changes-report.html
