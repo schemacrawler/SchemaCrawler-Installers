@@ -91,7 +91,6 @@ jobs:
           Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
           scoop --version
           scoop update
-          scoop config allow-no-hash true
           # Check for current version of SchemaCrawler
           Write-Output '> scoop info schemacrawler'
           scoop info schemacrawler
@@ -102,7 +101,7 @@ jobs:
         run: |
           # Install SchemaCrawler
           $env:PATH += ";$env:USERPROFILE\scoop\shims"
-          scoop install schemacrawler
+          scoop install --skip-hash-check schemacrawler
 
       - id: scoop-smoke-test
         name: Smoke test command
