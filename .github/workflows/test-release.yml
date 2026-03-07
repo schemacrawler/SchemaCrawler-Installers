@@ -167,4 +167,4 @@ jobs:
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
-          schemacrawler --version
+          & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
