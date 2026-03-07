@@ -186,7 +186,8 @@ jobs:
         shell: bash
         run: |
           # Check that SchemaCrawler is runs
-          docker run --rm -it \
+          # (Add an additional -it argument if you want to run interactively)
+          docker run --rm \
             --name schemacrawler \
             --volume "$(pwd):/home/schcrwlr/share" \
             schemacrawler/schemacrawler:latest \
