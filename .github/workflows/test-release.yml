@@ -138,7 +138,7 @@ jobs:
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
-          schemacrawler.cmd --version
+          & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
 
   test-chocolatey:
     name: Test Chocolatey package
@@ -167,4 +167,4 @@ jobs:
         shell: pwsh
         run: |
           # Check that SchemaCrawler is installed
-          & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
+          schemacrawler --version
