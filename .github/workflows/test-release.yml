@@ -168,3 +168,26 @@ jobs:
         run: |
           # Check that SchemaCrawler is installed
           schemacrawler --version
+
+  test-docker:
+    name: Test Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: docker-pull
+        name: Install SchemaCrawler with Docker
+        shell: bash
+        run: |
+          # Pull SchemaCrawler image
+          docker pull schemacrawler/schemacrawler:latest
+
+      - id: docker-smoke-test
+        name: Smoke test command
+        shell: bash
+        run: |
+          # Check that SchemaCrawler is runs
+          docker run -it \
+            --name schemacrawler \
+            --volume "$(pwd):/home/schcrwlr/share" \
+            schemacrawler/schemacrawler:latest \
+            /bin/bash
