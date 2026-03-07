@@ -215,14 +215,6 @@ jobs:
         retention-days: 5
 
 # Create Release - WINGET RELEASE
-    - id: sync-winget-fork
-      name: Sync schemacrawler/winget-pkgs fork
-      shell: pwsh
-      env:
-        WINGET_PKGS_TOKEN: ${{ secrets.WINGET_PKGS_TOKEN }}
-      run: |
-        echo "$WINGET_PKGS_TOKEN" | gh auth login --with-token
-        gh repo sync schemacrawler/winget-pkgs -b master
     - id: winget-release
       name: Publish to Winget
       uses: vedantmgoyal9/winget-releaser@main
