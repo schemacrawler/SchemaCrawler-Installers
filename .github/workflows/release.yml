@@ -88,7 +88,7 @@ jobs:
 # Build Linux Installer - BUILD INSTALLER
     - id: download-distrib-lib
       name: Download distribution
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
     - id: build-installer
       name: Build installer
       shell: bash
@@ -135,7 +135,7 @@ jobs:
 # Build Windows Installer - BUILD INSTALLER
     - id: download-distrib-lib
       name: Download distribution
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
     - id: build-installer
       name: Build installer
       shell: bash
@@ -173,12 +173,12 @@ jobs:
 # Create Release - DOWNLOAD INSTALLERS
     - id: download-linux-installer
       name: Download Linux installer
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: linux-installer
     - id: download-windows-installer
       name: Download Windows installer
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: windows-installer
     - id: download-distribution
