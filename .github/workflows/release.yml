@@ -53,14 +53,14 @@ jobs:
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
       name: Upload distribution - lib/ folder
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: schemacrawler-lib
         path: ./schemacrawler-lib/
         retention-days: 1
     - id: upload-distrib-icons
       name: Upload distribution - icons/ folder
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: schemacrawler-icons
         path: ./schemacrawler-icons/
@@ -107,7 +107,7 @@ jobs:
 # Build Linux Installer - SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: linux-installer
         path: ./schemacrawler-installers/*
@@ -151,7 +151,7 @@ jobs:
 # Build Windows Installer - SAVE INSTALLER
     - id: upload-installer
       name: Upload installer
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: windows-installer
         path: ./schemacrawler-installers/*
@@ -204,7 +204,7 @@ jobs:
         arguments: "full-release -g"
     - id: persist-jreleaser-out
       name: JReleaser release output
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: always()
       with:
         name: windows-jreleaser-out
