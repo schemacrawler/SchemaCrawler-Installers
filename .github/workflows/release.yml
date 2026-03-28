@@ -77,7 +77,7 @@ jobs:
 # Build Linux Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - id: setup-jdk
       name: Setup JDK
       uses: actions/setup-java@v4
@@ -124,7 +124,7 @@ jobs:
 # Build Windows Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - id: setup-jdk
       name: Setup JDK
       uses: actions/setup-java@v4
@@ -168,7 +168,7 @@ jobs:
 # Checkout code
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
 # Create Release - DOWNLOAD INSTALLERS
     - id: download-linux-installer
