@@ -37,7 +37,7 @@ jobs:
         repository: schemacrawler/SchemaCrawler-Usage
         path: SchemaCrawler-Usage
         sparse-checkout: |
-          schemacrawler-website/src/site/resources/images
+          logos
         sparse-checkout-cone-mode: false
     - id: copy-icons
       name: Copy logo images
@@ -45,7 +45,7 @@ jobs:
       run: |
         # Copy logo images
         mkdir ./schemacrawler-icons
-        cp SchemaCrawler-Usage/schemacrawler-website/src/site/resources/images/schemacrawler_logo.* ./schemacrawler-icons/
+        cp SchemaCrawler-Usage/logos/schemacrawler_logo.* ./schemacrawler-icons/
         ls -l ./schemacrawler-icons/
 
 # Build SchemaCrawler - BUILD FOR DISTRIBUTION
