@@ -29,6 +29,25 @@ jobs:
             exit 1
           fi
 
+# Build SchemaCrawler - OBTAIN LOGO IMAGES
+    - id: checkout-images
+      name: Checkout logo images from SchemaCrawler-Usage
+      uses: actions/checkout@v6
+      with:
+        repository: schemacrawler/SchemaCrawler-Usage
+        path: SchemaCrawler-Usage
+        sparse-checkout: |
+          schemacrawler-website/src/site/resources/images
+        sparse-checkout-cone-mode: false
+    - id: copy-icons
+      name: Copy logo images
+      shell: bash
+      run: |
+        # Copy logo images
+        mkdir ./schemacrawler-icons
+        cp SchemaCrawler-Usage/schemacrawler-website/src/site/resources/images/schemacrawler_logo.* ./schemacrawler-icons/
+        ls -l ./schemacrawler-icons/
+
 # Build SchemaCrawler - BUILD FOR DISTRIBUTION
     - id: obtain-distribution
       name: Obtain distribution
@@ -39,16 +58,11 @@ jobs:
         https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.10.1/schemacrawler-17.10.1-bin.zip
         test -f schemacrawler-17.10.1-bin.zip && echo "Downloaded binary distribution"
         mkdir ./schemacrawler-lib
-        mkdir ./schemacrawler-icons
         unzip schemacrawler-17.10.1-bin.zip
         cp \
           ./schemacrawler-17.10.1-bin/lib/* \
           ./schemacrawler-lib/
-        cp \
-          ./schemacrawler-17.10.1-bin/logos/* \
-          ./schemacrawler-icons/
         ls -lR ./schemacrawler-lib/
-        ls -lR ./schemacrawler-icons/
 
 # Build SchemaCrawler - SAVE DISTRIBUTION
     - id: upload-distrib-lib
