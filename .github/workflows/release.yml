@@ -55,12 +55,12 @@ jobs:
       run: |
         # Obtain distribution
         wget -N -q \
-        https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.11.1/schemacrawler-17.11.1-bin.zip
-        test -f schemacrawler-17.11.1-bin.zip && echo "Downloaded binary distribution"
+        https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.11.2/schemacrawler-17.11.2-bin.zip
+        test -f schemacrawler-17.11.2-bin.zip && echo "Downloaded binary distribution"
         mkdir ./schemacrawler-lib
-        unzip schemacrawler-17.11.1-bin.zip
+        unzip schemacrawler-17.11.2-bin.zip
         cp \
-          ./schemacrawler-17.11.1-bin/lib/* \
+          ./schemacrawler-17.11.2-bin/lib/* \
           ./schemacrawler-lib/
         ls -lR ./schemacrawler-lib/
 
@@ -111,11 +111,11 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-linux.cfg"
         mv \
-          ./schemacrawler-installers/schemacrawler_17.11.1-1_amd64.deb \
-          ./schemacrawler-installers/schemacrawler-17.11.1.deb
+          ./schemacrawler-installers/schemacrawler_17.11.2-1_amd64.deb \
+          ./schemacrawler-installers/schemacrawler-17.11.2.deb
         sha256sum -b \
-          ./schemacrawler-installers/schemacrawler-17.11.1.deb \
-          > ./schemacrawler-installers/schemacrawler-17.11.1.deb.SHA256
+          ./schemacrawler-installers/schemacrawler-17.11.2.deb \
+          > ./schemacrawler-installers/schemacrawler-17.11.2.deb.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Linux Installer - SAVE INSTALLER
@@ -158,8 +158,8 @@ jobs:
         mkdir ./schemacrawler-installers
         jpackage --verbose "@jpackage.cfg" "@jpackage-windows.cfg"
         sha256sum -b \
-          ./schemacrawler-installers/SchemaCrawler-17.11.1.msi \
-          > ./schemacrawler-installers/SchemaCrawler-17.11.1.msi.SHA256
+          ./schemacrawler-installers/SchemaCrawler-17.11.2.msi \
+          > ./schemacrawler-installers/SchemaCrawler-17.11.2.msi.SHA256
         ls -l ./schemacrawler-installers
 
 # Build Windows Installer - SAVE INSTALLER
@@ -200,7 +200,7 @@ jobs:
       shell: pwsh
       run: |
         # Download binary distribution
-        Invoke-WebRequest -OutFile schemacrawler-17.11.1-bin.zip -Uri https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.11.1/schemacrawler-17.11.1-bin.zip
+        Invoke-WebRequest -OutFile schemacrawler-17.11.2-bin.zip -Uri https://github.com/schemacrawler/SchemaCrawler/releases/download/v17.11.2/schemacrawler-17.11.2-bin.zip
 
 # Create Release - JRELEASER RELEASES
     - id: jreleaser
@@ -242,5 +242,5 @@ jobs:
       with:
         identifier: schemacrawler.schemacrawler
         token: ${{ secrets.WINGET_PKGS_TOKEN }}
-        release-tag: v17.11.1
+        release-tag: v17.11.2
         release-notes-url: https://www.schemacrawler.com/changes-report.html
