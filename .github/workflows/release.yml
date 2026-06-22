@@ -32,7 +32,7 @@ jobs:
 # Build SchemaCrawler - OBTAIN LOGO IMAGES
     - id: checkout-images
       name: Checkout logo images from SchemaCrawler-Usage
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         repository: schemacrawler/SchemaCrawler-Usage
         path: SchemaCrawler-Usage
@@ -91,7 +91,7 @@ jobs:
 # Build Linux Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - id: setup-jdk
       name: Setup JDK
       uses: actions/setup-java@v5
@@ -138,7 +138,7 @@ jobs:
 # Build Windows Installer - SETUP BUILD ENVIRONMENT
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - id: setup-jdk
       name: Setup JDK
       uses: actions/setup-java@v5
@@ -182,7 +182,7 @@ jobs:
 # Checkout code
     - id: checkout-code
       name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
 # Create Release - DOWNLOAD INSTALLERS
     - id: download-linux-installer
