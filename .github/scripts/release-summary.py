@@ -9,6 +9,7 @@ from urllib.request import Request, urlopen
 
 
 MAVEN_URL = "https://repo.maven.apache.org/maven2/us/fatehi/"
+LATEST_RELEASE_URL = "https://api.github.com/repos/schemacrawler/SchemaCrawler/releases/latest"
 PACKAGES = {
     "test-brew": "Homebrew",
     "test-sdkman": "SDKMAN",
@@ -42,7 +43,21 @@ def cell(value):
     return str(value).replace("|", r"\|").replace("\r", "").replace("\n", " ")
 
 
-def package_rows(results):
+def latest_release():
+    release = json.loads(fetch(LATEST_RELEASE_URL))
+    version = release.get("tag_name", "").removeprefix("v")
+    if not re.fullmatch(r"\d+(?:\.\d+){2,}(?:[-+][0-9A-Za-z.-]+)?", version):
+        raise ValueError(f"Invalid or missing latest SchemaCrawler release: {version!r}")
+    return version
+
+
+def version_indicator(version, latest_version):
+    if not version or not latest_version:
+        return "Unknown"
+    return ":warning:" if version != latest_version else ""
+
+
+def package_rows(results, latest_version):
     rows = []
     errors = []
     for job, name in PACKAGES.items():
@@ -59,11 +74,12 @@ def package_rows(results):
         if not match and status == "success":
             status = "Version not recognized"
             errors.append(f"{name}: no SchemaCrawler version found in {output!r}")
-        rows.append(f"| {name} | {cell(version)} | {cell(status)} |")
+        indicator = version_indicator(match[1] if match else None, latest_version)
+        rows.append(f"| {name} | {cell(version)} | {indicator} | {cell(status)} |")
     return rows, errors
 
 
-def maven_rows():
+def maven_rows(latest_version):
     index = ArtifactIndex()
     index.feed(fetch(MAVEN_URL).decode("utf-8"))
     if not index.artifacts:
@@ -85,10 +101,11 @@ def maven_rows():
             if packaging == "pom":
                 continue
             fetch(f"{base_url}.jar", method="HEAD")
-            rows.append(f"| {coordinate} | {cell(version)} | [JAR]({base_url}.jar) |")
+            indicator = version_indicator(version, latest_version)
+            rows.append(f"| {coordinate} | {cell(version)} | {indicator} | [JAR]({base_url}.jar) |")
         except (OSError, ET.ParseError, ValueError) as error:
             errors.append(f"{coordinate}: {error}")
-            rows.append(f"| {coordinate} | Not available | {cell(error)} |")
+            rows.append(f"| {coordinate} | Not available | Unknown | {cell(error)} |")
     if not rows:
         errors.append("No SchemaCrawler JAR releases found in Maven Central")
     return rows, errors
@@ -96,14 +113,27 @@ def maven_rows():
 
 def main():
     results = json.loads(os.environ["PACKAGE_RESULTS"])
-    packages, errors = package_rows(results)
+    latest_version = None
+    errors = []
+    try:
+        latest_version = latest_release()
+    except (OSError, ValueError) as error:
+        errors.append(f"Latest SchemaCrawler release lookup failed: {error}")
+    packages, package_errors = package_rows(results, latest_version)
+    errors.extend(package_errors)
     lines = [
-        "# Published SchemaCrawler versions",
+        "# Published SchemaCrawler Versions",
+        "",
+        f"Latest SchemaCrawler release: **{cell(latest_version or 'Unknown')}** "
+        "([GitHub](https://github.com/schemacrawler/SchemaCrawler/releases/latest)).",
+        "",
+        ":warning: = version differs from the latest SchemaCrawler release. "
+        "Unknown = version or latest-release baseline unavailable.",
         "",
         "## Installed packages",
         "",
-        "| Channel | SchemaCrawler version | Test result |",
-        "| --- | --- | --- |",
+        "| Channel | SchemaCrawler version | Not latest | Test result |",
+        "| --- | --- | --- | --- |",
         *packages,
         "",
         "## Maven Central JAR releases",
@@ -111,16 +141,16 @@ def main():
         "Latest release of each `us.fatehi:schemacrawler*` JAR, queried independently "
         "from Maven Central metadata. POM-only artifacts are excluded.",
         "",
-        "| Artifact | Published version | Download / error |",
-        "| --- | --- | --- |",
+        "| Artifact | Published version | Not latest | Download / error |",
+        "| --- | --- | --- | --- |",
     ]
     try:
-        jars, maven_errors = maven_rows()
+        jars, maven_errors = maven_rows(latest_version)
         lines.extend(jars)
         errors.extend(maven_errors)
     except (OSError, ET.ParseError, ValueError) as error:
         errors.append(f"Maven Central discovery failed: {error}")
-        lines.append(f"| Discovery failed | Not available | {cell(error)} |")
+        lines.append(f"| Discovery failed | Not available | Unknown | {cell(error)} |")
     if errors:
         lines.extend(["", "## Reporting errors", "", *(f"- {cell(error)}" for error in errors)])
     with Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8") as summary:
