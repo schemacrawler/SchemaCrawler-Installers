@@ -37,7 +37,7 @@ jobs:
         run: |
           # Check that SchemaCrawler is installed
           schemacrawler --version
-	  # Produce report
+          # Produce report
           version_output=$(schemacrawler --version)
           printf '%s\n' "$version_output"
           printf 'version-output<<VERSION_OUTPUT\n%s\nVERSION_OUTPUT\n' "$version_output" >> "$GITHUB_OUTPUT"
@@ -86,7 +86,7 @@ jobs:
           # Check that SchemaCrawler is installed
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           schemacrawler.sh --version
-	  # Produce report
+          # Produce report
           version_output=$(schemacrawler.sh --version)
           printf '%s\n' "$version_output"
           printf 'version-output<<VERSION_OUTPUT\n%s\nVERSION_OUTPUT\n' "$version_output" >> "$GITHUB_OUTPUT"
@@ -126,7 +126,7 @@ jobs:
           # Check that SchemaCrawler is installed
           $env:PATH += ";$env:USERPROFILE\scoop\shims"
           schemacrawler --version
-	  # Produce report
+          # Produce report
           $versionOutput = schemacrawler --version
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $versionOutput
@@ -162,7 +162,7 @@ jobs:
         run: |
           # Check that SchemaCrawler is installed
           & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
-	  # Produce report
+          # Produce report
           $versionOutput = & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $versionOutput
@@ -198,7 +198,7 @@ jobs:
         run: |
           # Check that SchemaCrawler is installed
           schemacrawler --version
-	  # Produce report
+          # Produce report
           $versionOutput = schemacrawler --version
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $versionOutput
@@ -229,7 +229,7 @@ jobs:
             --volume "$(pwd):/home/schcrwlr/share" \
             schemacrawler/schemacrawler:latest \
             /opt/schemacrawler/bin/schemacrawler.sh --version
-	  # Produce report
+          # Produce report
           version_output=$(docker run --rm \
             --name schemacrawler \
             --volume "$(pwd):/home/schcrwlr/share" \
