@@ -7,6 +7,8 @@ jobs:
   test-brew:
     name: Test Homebrew package
     runs-on: macos-latest
+    outputs:
+      version-output: ${{ steps.brew-smoke-test.outputs.version-output }}
 
     steps:
       - id: brew-setup
@@ -18,6 +20,7 @@ jobs:
           brew -v
           # Set up SchemaCrawler tap
           brew tap schemacrawler/homebrew-tap
+          brew trust --formula schemacrawler/tap/schemacrawler
           echo '$ brew info schemacrawler'
           brew info --formula schemacrawler
 
@@ -30,13 +33,20 @@ jobs:
 
       - id: brew-smoke-test
         name: Smoke test command
+        shell: bash
         run: |
           # Check that SchemaCrawler is installed
           schemacrawler --version
+	  # Produce report
+          version_output=$(schemacrawler --version)
+          printf '%s\n' "$version_output"
+          printf 'version-output<<VERSION_OUTPUT\n%s\nVERSION_OUTPUT\n' "$version_output" >> "$GITHUB_OUTPUT"
 
   test-sdkman:
     name: Test SDKMAN candidate
     runs-on: ubuntu-slim
+    outputs:
+      version-output: ${{ steps.sdkman-smoke-test.outputs.version-output }}
 
     env:
       SDKMAN_DIR: ${{ github.workspace }}/.sdkman
@@ -76,10 +86,16 @@ jobs:
           # Check that SchemaCrawler is installed
           source "$SDKMAN_DIR/bin/sdkman-init.sh"
           schemacrawler.sh --version
+	  # Produce report
+          version_output=$(schemacrawler.sh --version)
+          printf '%s\n' "$version_output"
+          printf 'version-output<<VERSION_OUTPUT\n%s\nVERSION_OUTPUT\n' "$version_output" >> "$GITHUB_OUTPUT"
 
   test-scoop:
     name: Test Scoop package
     runs-on: windows-latest
+    outputs:
+      version-output: ${{ steps.scoop-smoke-test.outputs.version-output }}
 
     steps:
       - id: scoop-setup
@@ -110,10 +126,17 @@ jobs:
           # Check that SchemaCrawler is installed
           $env:PATH += ";$env:USERPROFILE\scoop\shims"
           schemacrawler --version
+	  # Produce report
+          $versionOutput = schemacrawler --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $versionOutput
+          "version-output<<VERSION_OUTPUT`n$($versionOutput -join "`n")`nVERSION_OUTPUT" >> $env:GITHUB_OUTPUT
 
   test-winget:
     name: Test Winget package
     runs-on: windows-latest
+    outputs:
+      version-output: ${{ steps.winget-smoke-test.outputs.version-output }}
 
     steps:
       - id: winget-setup
@@ -139,10 +162,17 @@ jobs:
         run: |
           # Check that SchemaCrawler is installed
           & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
+	  # Produce report
+          $versionOutput = & 'C:\Program Files\SchemaCrawler\SchemaCrawler.exe' --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $versionOutput
+          "version-output<<VERSION_OUTPUT`n$($versionOutput -join "`n")`nVERSION_OUTPUT" >> $env:GITHUB_OUTPUT
 
   test-chocolatey:
     name: Test Chocolatey package
     runs-on: windows-latest
+    outputs:
+      version-output: ${{ steps.chocolatey-smoke-test.outputs.version-output }}
 
     steps:
       - id: chocolatey-setup
@@ -168,10 +198,17 @@ jobs:
         run: |
           # Check that SchemaCrawler is installed
           schemacrawler --version
+	  # Produce report
+          $versionOutput = schemacrawler --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $versionOutput
+          "version-output<<VERSION_OUTPUT`n$($versionOutput -join "`n")`nVERSION_OUTPUT" >> $env:GITHUB_OUTPUT
 
   test-docker:
     name: Test Docker image
     runs-on: ubuntu-latest
+    outputs:
+      version-output: ${{ steps.docker-smoke-test.outputs.version-output }}
 
     steps:
       - id: docker-pull
@@ -192,3 +229,31 @@ jobs:
             --volume "$(pwd):/home/schcrwlr/share" \
             schemacrawler/schemacrawler:latest \
             /opt/schemacrawler/bin/schemacrawler.sh --version
+	  # Produce report
+          version_output=$(docker run --rm \
+            --name schemacrawler \
+            --volume "$(pwd):/home/schcrwlr/share" \
+            schemacrawler/schemacrawler:latest \
+            /opt/schemacrawler/bin/schemacrawler.sh --version)
+          printf '%s\n' "$version_output"
+          printf 'version-output<<VERSION_OUTPUT\n%s\nVERSION_OUTPUT\n' "$version_output" >> "$GITHUB_OUTPUT"
+
+  release-summary:
+    name: Published version report
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - test-brew
+      - test-sdkman
+      - test-scoop
+      - test-winget
+      - test-chocolatey
+      - test-docker
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Report package and Maven Central versions
+        env:
+          PACKAGE_RESULTS: ${{ toJSON(needs) }}
+        run: python3 .github/scripts/release-summary.py
