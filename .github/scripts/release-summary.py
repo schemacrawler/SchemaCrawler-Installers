@@ -92,6 +92,8 @@ def maven_rows(latest_version):
         try:
             metadata = ET.fromstring(fetch(f"{MAVEN_URL}{artifact}/maven-metadata.xml"))
             version = metadata.findtext("versioning/release")
+            if version == "100.0.0+unpublished":
+                continue
             if not version or not re.fullmatch(r"[0-9A-Za-z_.+-]+", version):
                 raise ValueError(f"Invalid or missing release version: {version!r}")
             base_url = f"{MAVEN_URL}{artifact}/{version}/{artifact}-{version}"
@@ -139,7 +141,8 @@ def main():
         "## Maven Central JAR releases",
         "",
         "Latest release of each `us.fatehi:schemacrawler*` JAR, queried independently "
-        "from Maven Central metadata. POM-only artifacts are excluded.",
+        "from Maven Central metadata. POM-only artifacts and releases with version "
+        "`100.0.0+unpublished` are excluded.",
         "",
         "| Artifact | Published version | Not latest | Download / error |",
         "| --- | --- | --- | --- |",
